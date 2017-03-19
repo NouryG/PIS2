@@ -98,7 +98,7 @@ catch (Exception $e)
 				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" name="project_name" required>
 				                        	<input type="text" placeholder="Entrez le code du projet..." class="form-control" name="project_code" required>
 				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" name="project_client" required>
-				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
+				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
 							                    <input class="form-control" size="16" type="text" name="project_date" readonly required>
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
