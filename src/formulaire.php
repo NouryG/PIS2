@@ -92,25 +92,27 @@ catch (Exception $e)
                     <div class="row">
                     	<div class="col-sm-8 form-box col-sm-offset-2" id="forms" >
                     			<div style="display: none;" id="project_form">
-                    				<form role="form"  action="SCRIPT_PHP_BDD.php" method="post">
+                    				<form role="form"  action="bdd_add_project.php" method="post">
 				                        <div class="form-group">
 				                        	<label style="color: white">Ajout de Projet</label>
-				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" name="project_name">
-				                        	<input type="text" placeholder="Entrez le code du projet..." class="form-control" name="project_code">
-				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" name="project_client">
+				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" name="project_name" required>
+				                        	<input type="text" placeholder="Entrez le code du projet..." class="form-control" name="project_code" required>
+				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" name="project_client" required>
 				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
-							                    <input class="form-control" size="16" type="text" name="project_date" readonly>
+							                    <input class="form-control" size="16" type="text" name="project_date" readonly required>
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 							</div>
-				                        	<input type="number" value=0 placeholder="Entrez le nombre de jours vendus" class="form-control" name="project_sold_days">
+				                        	<input type="number" value=0 placeholder="Entrez le nombre de jours vendus" class="form-control" name="project_sold_days" required>
+
+                                            <div id="resultat"></div>
 				                        </div>
-			                        <button type="submit" class="btn">Ajouter</button>
+			                        <button id="submit" type="submit" class="btn">Ajouter</button>
 			                     </form>
                     			</div>
 
                                 <div style="display: none;" id="collab_form">
-                                    <form role="form"  action="SCRIPT_PHP_BDD.php" method="post">
+                                    <form role="form"  action="" method="post">
                                         <div class="form-group">
                                             <label style="color: white">Ajout de Collaborateur</label>
                                         </div>
@@ -118,7 +120,7 @@ catch (Exception $e)
                                 </div>
 
                                 <div style="display: none;" id="imput_form">
-                                    <form role="form"  action="SCRIPT_PHP_BDD.php" method="post">
+                                    <form role="form"  action=".php" method="post">
                                         <div class="form-group">
                                             <label style="color: white">Ajout d'imputation</label>
                                         </div>
@@ -146,6 +148,7 @@ catch (Exception $e)
         <script src="assets/js/form.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.fr.js"></script>
+        <script src='assets/js/ajax_add_project.js'></script>
         <script type="text/javascript">
 		$('.form_date').datetimepicker({
 	        language:  'fr',
@@ -157,78 +160,9 @@ catch (Exception $e)
 			minView: 2,
 			forceParse: 0
    		 });
-</script>
+        </script>
 
 
     </body>
 
 </html>
-
-<!--
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
-   <head>
-       <title>Formulaires</title>
-       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-   </head>
-   
-</html>
-
-
-	<body>
-
-		<h1> CONTENU BDD : </h1>
-		<?php
-		$reponse = $bdd->query('SELECT * FROM jeux_video');
-		while ($donnees = $reponse->fetch())
-		{
-			?>
-			<p>
-				<strong>Nom du jeu : </strong><?php echo $donnees['nom']?>
-			</p>
-		
-		<?php
-		}
-
-$reponse->closeCursor(); // Termine le traitement de la requête
-
-?>
-		
-
-		<h1>FORMULAIRE POUR TTH</h1>
-		<p>Affichage les jeux d'une personne:</p>
-		
-		<form action="bdd.php" method="post">
-			<p>
-				<input type="text" name="possesseur" /> 
-				<!-- <textarea name="message" rows="8" cols="45">Votre message ici.</textarea>
-				<select name="choix">
-					<option value="choix1">Choix 1</option>
-					<option value="choix2">Choix 2</option>
-					<option value="choix3">Choix 3</option>
-					<option value="choix4">Choix 4</option>
-					</select>
-				<input type="checkbox" name="case" id="case" /> <label for="case">Ma case à cocher</label>
-				<input type="submit" value="Valider" />
-			</p>
-		</form>
-
-		<p>Ajouter un jeu à la BDD:</p>
-		<form method="post" action="bdd_modify.php"> 
-		<p>Nom du jeu:</p>
-        <input type="text" name="nom" maxlength="30"/>
-        <p>Possesseur:</p> 
-        <input type="text" name="possesseur" /> 
-        <p>Console:</p> 
-        <input type="text" name="console" /> 
-        <p>Prix:</p>
-        <input type="text" name="prix" /> 
-        <p>Nombre de joueurs max :</p>
-        <input type="text" name="nbre_joueurs_max" /> 
-        <p>Description du jeu:</p>
-        <textarea name="commentaires" rows="8" cols="45"></textarea> 
-        <input type="submit" value="" id="submit" name="submit" />
-    </form> 
-
-    <p>Modifier une entrée d'un jeu: </p>
-
-   </body> -->
