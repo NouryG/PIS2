@@ -10,7 +10,7 @@ catch(Exception $e)
 
 if( isset($_POST['collab_name']) && isset($_POST['collab_surname']) && isset($_POST['collab_company']) && isset($_POST['collab_price'])){
 
-	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, societe, TJ) VALUES(:collab_name, :collab_surname, :collab_company, :collab_price)');
+	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, societe, TJ) VALUES(:nom, :prenom, :societe, :TJ)');
 	$req->execute(array(
     'nom' => $_POST['collab_name'],
     'prenom' => $_POST['collab_surname'],
