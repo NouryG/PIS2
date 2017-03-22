@@ -83,8 +83,8 @@ catch (Exception $e)
 								  <select class="form-control" id="display">
 								  		<option value="original" selected disabled>Séléction...</option>
 									    <option value="display_projects">Afficher Projets</option>
-									    <option>Autre (?)</option>
-									    <option>Autre (?)</option>
+									    <option value="display_collabs">Afficher Collaborateurs</option>
+									    <option value="display_imputs">Afficher Imputations</option>
 								  </select>
 							</div>
                         </div>
@@ -96,31 +96,35 @@ catch (Exception $e)
 				                        <div class="form-group">
 				                        	<label style="color: white">Ajout de Projet</label>
 				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" name="project_name" required>
-				                        	<input type="text" placeholder="Entrez le code du projet..." class="form-control" name="project_code" required>
+				                        	<input type="text" maxlength="3" placeholder="Entrez le code du projet..." class="form-control" name="project_code" required>
 				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" name="project_client" required>
 				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
 							                    <input class="form-control" size="16" type="text" name="project_date" readonly required>
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 							</div>
-				                        	<input type="number" value=0 placeholder="Entrez le nombre de jours vendus" class="form-control" name="project_sold_days" required>
-
-                                            <div id="resultat"></div>
+				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours vendus.." class="form-control" name="project_sold_days" required>
 				                        </div>
 			                        <button id="submit" type="submit" class="btn">Ajouter</button>
 			                     </form>
                     			</div>
 
                                 <div style="display: none;" id="collab_form">
-                                    <form role="form"  action="" method="post">
+                                    <form role="form"  action="bdd_add_collab.php" method="post">
                                         <div class="form-group">
                                             <label style="color: white">Ajout de Collaborateur</label>
+                                            <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" name="collab_name" required>
+				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" name="collab_surname" required>
+				                        	<input type="text"  maxlength="3" placeholder="Entrez le code société du collaborateur..." class="form-control" name="collab_company" required>
+				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez son tarif journalier" class="form-control" name="collab_price" required>
+				                        </div>
+			                        <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
                                     </form>
                                 </div>
 
                                 <div style="display: none;" id="imput_form">
-                                    <form role="form"  action=".php" method="post">
+                                    <form role="form"  action="" method="post">
                                         <div class="form-group">
                                             <label style="color: white">Ajout d'imputation</label>
                                         </div>
@@ -130,9 +134,19 @@ catch (Exception $e)
                     	</div>
                         <div class="col-sm-8 form-box col-sm-offset-2" id="displays">
                             <div style="display: none;" id="project_display">
-                            <form action="bdd_display_projects.php" method="post">
-                                <button type="submit" class="btn">Afficher les projets de la BDD</button>
-                            </form>
+	                            <form action="bdd_display_projects.php" method="post">
+	                                <button type="submit" class="btn">Afficher les projets de la BDD</button>
+	                            </form>
+                            </div>
+                            <div style="display: none;" id="collab_display">
+	                            <form action="bdd_display_collabs.php" method="post">
+	                                <button type="submit" class="btn">Afficher les collaborateurs de la BDD</button>
+	                            </form>
+                            </div>
+                            <div style="display: none;" id="imput_display">
+                                <form action="" method="post">
+                                    <button type="submit" class="btn">Afficher les imputations de la BDD</button>
+                                </form>
                             </div>
                         </div>
                     </div>
