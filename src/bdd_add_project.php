@@ -8,24 +8,19 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-if( isset($_POST['project_name']) && isset($_POST['project_code']) && isset($_POST['project_client']) && isset($_POST['project_date']) && isset($_POST['project_sold_days'])){
+if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && isset($_POST['date_debut']) && isset($_POST['jours_vendus'])){
 
-	$req = $bdd->prepare('INSERT INTO projet(nom, code, client, date_debut, jours_vendus) VALUES(:nom, :code, :client, :date_debut, :jours_vendus)');
+    $req = $bdd->prepare('INSERT INTO projet(nom, code, client, date_debut, jours_vendus) VALUES(:nom, :code, :client, :date_debut, :jours_vendus)');
 	$req->execute(array(
-    'nom' => $_POST['project_name'],
-    'code' => $_POST['project_code'],
-    'client' => $_POST['project_client'],
-    'date_debut' => $_POST['project_date'],
-    'jours_vendus' => $_POST['project_sold_days']
+    'nom' => $_POST['nom'],
+    'code' => $_POST['code'],
+    'client' => $_POST['client'],
+    'date_debut' => $_POST['date_debut'],
+    'jours_vendus' => $_POST['jours_vendus']
     ));
-
-	echo "L'ajout a réussi!";
     }
 
 else{
 	echo "L'ajout n'a pas abouti..";
 }
-
-
-
 ?>
