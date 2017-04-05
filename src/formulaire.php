@@ -92,39 +92,41 @@ catch (Exception $e)
                     <div class="row">
                     	<div class="col-sm-8 form-box col-sm-offset-2" id="forms" >
                     			<div style="display: none;" id="project_form">
-                    				<form role="form"  action="bdd_add_project.php" method="post">
+                    				<form  role="form" id="add_project">
 				                        <div class="form-group">
 				                        	<label style="color: white">Ajout de Projet</label>
-				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" name="project_name" required>
-				                        	<input type="text" maxlength="3" placeholder="Entrez le code du projet..." class="form-control" name="project_code" required>
-				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" name="project_client" required>
+				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" id="project_name" required>
+				                        	<input type="text" maxlength="3" placeholder="Entrez le code du projet..." class="form-control" id="project_code" required>
+				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" id="project_client" required>
 				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
-							                    <input class="form-control" size="16" type="text" name="project_date" readonly required>
+							                    <input class="form-control" size="16" type="text" id="project_date" readonly required>
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 							</div>
-				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours vendus.." class="form-control" name="project_sold_days" required>
+				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours vendus.." class="form-control" id="project_sold_days" required>
 				                        </div>
 			                        <button id="submit" type="submit" class="btn">Ajouter</button>
 			                     </form>
+                                 <center><div id="project_result"></div></center>
                     			</div>
 
                                 <div style="display: none;" id="collab_form">
-                                    <form role="form"  action="bdd_add_collab.php" method="post">
+                                    <form role="form"  id="add_collab">
                                         <div class="form-group">
                                             <label style="color: white">Ajout de Collaborateur</label>
-                                            <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" name="collab_name" required>
-				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" name="collab_surname" required>
-				                        	<input type="text"  maxlength="3" placeholder="Entrez le code société du collaborateur..." class="form-control" name="collab_company" required>
-				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez son tarif journalier" class="form-control" name="collab_price" required>
+                                            <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" id="collab_name" required>
+				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="collab_surname" required>
+				                        	<input type="text"  maxlength="3" placeholder="Entrez le code société du collaborateur..." class="form-control" id="collab_company" required>
+				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez son tarif journalier" class="form-control" id="collab_price" required>
 				                        </div>
 			                        <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
                                     </form>
+                                    <center><div id="collab_result"></div></center>
                                 </div>
 
                                 <div style="display: none;" id="imput_form">
-                                    <form role="form"  action="" method="post">
+                                    <form role="form"  id="add_imput">
                                         <div class="form-group">
                                             <label style="color: white">Ajout d'imputation</label>
                                         </div>
@@ -162,7 +164,7 @@ catch (Exception $e)
         <script src="assets/js/form.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.fr.js"></script>
-        <script src='assets/js/ajax_add_project.js'></script>
+        <script src='ajax_projects.js'></script>
         <script type="text/javascript">
 		$('.form_date').datetimepicker({
 	        language:  'fr',
