@@ -9,6 +9,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+
 --
 -- Structure de la table `collaborateurs`
 --
@@ -18,7 +19,8 @@ CREATE TABLE `collaborateurs` (
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `societe` varchar(3) NOT NULL,
-  `TJ` int(11) NOT NULL DEFAULT '0'
+  `TJ` int(11) NOT NULL DEFAULT '0',
+  `actif` bool
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -34,9 +36,14 @@ CREATE TABLE `projet` (
   `id_client` varchar(255) NOT NULL,
   `date_debut` date NOT NULL,
   `jours_vendus` int(11) NOT NULL,
-  `jours_produits` int(11) DEFAULT '0'
+  `jours_produits` int(11) DEFAULT '0',
+  `CA_vendu` float DEFAULT '0',
+  `cout_projet` float DEFAULT '0',
+  `RAF_reel`int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Ajouter RAf estimé ?
+--
 
 -- Contenu de la table `projet`
 --
@@ -45,7 +52,7 @@ INSERT INTO `projet` (`id`, `nom`, `code`, `client`, `date_debut`, `jours_vendus
 (1, 'Projet 1', 'TQ1', 'Client A', '2017-03-18', 88, 0),
 (2, 'Projet 2', 'REV', 'Client A', '2017-03-18', 0, 0),
 (3, 'Projet 3', 'REC', 'Client B', '2017-03-18', 0, 0);
-
+-- ---------------------------------------------------------------------------
 -- Structure de la table `imputation`
 --
 
@@ -57,7 +64,7 @@ CREATE TABLE `imputation` (
   `valeur` date NOT NULL DEFAULT,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 -- Structure de la table `client`
 --
 
@@ -85,6 +92,18 @@ ALTER TABLE `projet`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `projet`
+--
+  ALTER TABLE `imputation`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `projet`
+--
+ALTER TABLE `client`
+    ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -98,3 +117,15 @@ ALTER TABLE `collaborateurs`
 --
 ALTER TABLE `projet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `client`
+--
+  ALTER TABLE `client`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `imputation`
+--
+    ALTER TABLE `imputation`
+      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
