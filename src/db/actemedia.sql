@@ -16,6 +16,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+
 --
 -- Structure de la table `collaborateurs`
 --
@@ -25,7 +26,8 @@ CREATE TABLE `collaborateurs` (
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `societe` varchar(3) NOT NULL,
-  `TJ` int(11) NOT NULL DEFAULT '0'
+  `TJ` int(11) NOT NULL DEFAULT '0',
+  `actif` bool
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -41,9 +43,13 @@ CREATE TABLE `projet` (
   `client` varchar(255) NOT NULL,
   `date_debut` date NOT NULL,
   `jours_vendus` int(11) NOT NULL,
-  `jours_produits` int(11) DEFAULT '0'
+  `jours_produits` int(11) DEFAULT '0',
+  `CA_vendu` float DEFAULT '0',
+  `cout_projet` float DEFAULT '0',
+  `RAF_reel`int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Ajouter RAf estimé ?
 --
 -- Contenu de la table `projet`
 --
