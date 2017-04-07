@@ -31,7 +31,7 @@ CREATE TABLE `projet` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `code` varchar(3) NOT NULL,
-  `id_client` int(11) NOT NULL,
+  `client` int(11) NOT NULL,
   `date_debut` date NOT NULL,
   `jours_vendus` int(11) NOT NULL,
   `jours_produits` int(11) DEFAULT '0',
@@ -70,17 +70,27 @@ CREATE TABLE `client` (
 
 --
 -- Index pour les tables exportées
-ALTER TABLE `projet`
+
+--
+-- Index pour la table `collaborateurs`
+--
+ALTER TABLE `collaborateurs`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `projet`
 --
+ALTER TABLE `projet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `imputation`
+--
   ALTER TABLE `imputation`
     ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `projet`
+-- Index pour la table `client`
 --
 ALTER TABLE `client`
     ADD PRIMARY KEY (`id`);
@@ -94,10 +104,7 @@ ALTER TABLE `collaborateurs`
 --
 ALTER TABLE `projet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-  
-ALTER TABLE `projet`
-    ADD FOREIGN KEY (id_client) REFERENCES client(id);
---
+
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
