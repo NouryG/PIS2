@@ -1,0 +1,12 @@
+caption {
+    caption-side:top;
+    text-align: center;
+}
+
+
+body {
+  padding-top: 70px; /* Required padding for .navbar-fixed-top*/
+  font-size: 15px;
+  font-family: "segoe-ui", "open-sans", tahoma, arial;
+  margin: 0;
+}
