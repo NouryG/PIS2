@@ -21,7 +21,7 @@ catch(Exception $e)
              <th width="20%">Societe</th>
              <th width="10%">TJ</th>
              <th width="10%">Actif</th>
-             <th width="10%">Boutton</th>
+             <th width="10%">Bouton</th>
              </tr>
            </thead>';
 
