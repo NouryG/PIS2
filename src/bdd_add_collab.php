@@ -8,17 +8,14 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['societe']) && isset($_POST['tj'])){
+if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['societe']) && isset($_POST['TJ'])){
 
-	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, societe, tj,actif) VALUES(:nom, :prenom, :societe, :tj,:actif)');
+	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, societe, TJ) VALUES(:nom, :prenom, :societe, :TJ)');
 	$req->execute(array(
     'nom' => $_POST['nom'],
     'prenom' => $_POST['prenom'],
     'societe' => $_POST['societe'],
-    'tj' => $_POST['tj'],
-		'actif' => $_POST['actif']
-
-
+    'TJ' => $_POST['TJ']
     ));
     }
 
