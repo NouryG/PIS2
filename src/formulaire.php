@@ -148,10 +148,26 @@ catch (Exception $e)
                                 <div class="col-sm-8 form-box col-sm-offset-2" style="display: none;" id="imput_form">
                                     <form role="form"  id="add_imput">
                                         <div class="form-group">
-                                            <label style="color: white; text-align: left;">Ajout d'imputation</label>
-                                            <input type="text" placeholder="Entrez le code du projet..." class="form-control" id="" required>
-                                            <input type="text"  placeholder="Entrez le code du collaborateur..." class="form-control" id="" required>
-                                            <input type="text"  maxlength="3" placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="" required>
+                                            <label style="color: white; margin-bottom: 30px;">Ajout d'imputation</label><br>
+                                            <label for="code_projet" style="color: white; font-weight:200;">Séléctionner le code du projet:</label>
+                                            <select class="form-control" id="code" required>
+                                            <?php
+                                            $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
+                                            or die ('Cannot connect to db');
+
+                                                $result = $conn->query("select code from projet");
+
+                                                while ($row = $result->fetch_assoc()) {
+
+                                                              unset($code);
+                                                              $code = $row['code'];
+                                                              echo '<option value="'.$code.'">'.$code.'</option>';
+
+                                            }
+                                            ?> </select>
+                                            <label for="code_collab" style="color: white;font-weight:200;">Séléctionner le code du collaborateur: </label>
+                                            <select class="form-control" id="code" required></select>
+                                            <input type="text"   placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
