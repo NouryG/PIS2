@@ -150,7 +150,7 @@ catch (Exception $e)
                                         <div class="form-group">
                                             <label style="color: white; text-align: left;">Ajout d'imputation</label>
                                             <input type="text" placeholder="Entrez le code du projet..." class="form-control" id="" required>
-                                            <input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="" required>
+                                            <input type="text"  placeholder="Entrez le code du collaborateur..." class="form-control" id="" required>
                                             <input type="text"  maxlength="3" placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
