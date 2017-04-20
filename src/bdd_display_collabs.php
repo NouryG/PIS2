@@ -2,24 +2,49 @@
       <head>
            <title>Table collaborateurs</title>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-           <link href="assets\css\bdd_collabs.css" rel="stylesheet">
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+           <link href="assets\css\style.css" rel="stylesheet">
       </head>
       <body>
 
-        <div class="header" id="header">
-          <nav class="navbar navbar-inverse">
-          <div class="container">
-                <ul class="nav navbar-nav">
-                  <li><a href="formulaire.php">Formulaire</a></li>
-                  <li><a href="bdd_display_projects.php">Projets</a></li>
-                  </ul>
-          </div><!--/.Container -->
-          </nav>
-        </div><!--/.header -->
-
+        
+          <nav class="navbar-custom navbar-fixed-top" style="background: rgb(51,122,183);">
+              <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>  
+                    </button>
+                    <a class="navbar-brand" id=""  href="accueil.php">Acte Media - Suivi de Production</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="formulaire.php">Formulaires</a>
+                        </li>
+                        <li>
+                            <a href="bdd_display_collabs.php">Afficher collaborateurs</a>
+                        </li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Afficher les rapports<span class="caret"></span></a>
+                            <ul class="dropdown-menu" style="background: rgb(51,122,183);">
+                                <li>
+                                    <a  id="" class="hidden-xs"  href="">Rapport Mensuel</a>
+                                    <a  id="" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
+                                    <a  id="" class="hidden-xs"  href="">Rapport Annuel</a>
+                                    <a  id="" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+              </div>
+            </div>
+            </nav>
+        </div>
+          <div class="header" id="header">
            <div class="container">
+                <br />
+                <br />
                 <br />
                 <br />
                 <br />
