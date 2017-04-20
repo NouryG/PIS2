@@ -117,6 +117,7 @@ catch (Exception $e)
 				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" id="project_name" required>
 				                        	<input type="text" maxlength="3" placeholder="Entrez le code du projet..." class="form-control" id="project_code" required>
 				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" id="project_client" required>
+                                            <input type="text" placeholder="Entrez le RAF Réel du projet... (laisser vide si calcul normal)" class="form-control" id="project_RAF" >
 				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
 							                    <input class="form-control" size="16" type="text" id="project_date" readonly required>
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -144,12 +145,18 @@ catch (Exception $e)
                                     <center><div id="collab_result"></div></center>
                                 </div>
 
-                                <div style="display: none;" id="imput_form">
+                                <div class="col-sm-8 form-box col-sm-offset-2" style="display: none;" id="imput_form">
                                     <form role="form"  id="add_imput">
                                         <div class="form-group">
-                                            <label style="color: white">Ajout d'imputation</label>
+                                            <label style="color: white; text-align: left;">Ajout d'imputation</label>
+                                            <input type="text" placeholder="Entrez le code du projet..." class="form-control" id="" required>
+                                            <input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="" required>
+                                            <input type="text"  maxlength="3" placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="" required>
+                                        </div>
+                                    <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
                                     </form>
+                                    <center><div id="imput_result"></div></center>
                                 </div>
 
                     	</div>
