@@ -136,6 +136,7 @@ catch (Exception $e)
                                             <label style="color: white">Ajout de Collaborateur</label>
                                             <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" id="collab_name" required>
 				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="collab_surname" required>
+                                            <input type="text" placeholder="Entrez le code du collaborateur..." class="form-control" id="collab_surname" required>
 				                        	<input type="text"  maxlength="3" placeholder="Entrez le code société du collaborateur..." class="form-control" id="collab_company" required>
 				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez son tarif journalier" class="form-control" id="collab_price" required>
 				                        </div>
