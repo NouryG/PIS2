@@ -7,8 +7,8 @@ $("#add_project").submit(function(event){
 	var client = $("#project_client").val();
 	var date = $("#project_date").val();
 	var sold_days = $("#project_sold_days").val();
-	// Returns successful data submission message when the entered information is stored in database.
-	var dataString = 'nom='+ name + '&code='+ code + '&client='+ client + '&date_debut='+ date + '&jours_vendus='+ sold_days ;
+	var raf_reel = $("#project_raf").val();
+	var dataString = 'nom='+ name + '&code='+ code + '&client='+ client + '&date_debut='+ date + '&jours_vendus='+ sold_days + '&RAF_reel=' + raf_reel;
 	if(name==''||code==''||client==''||date==''||sold_days=='')
 		{
 		alert("Merci de remplir tous les champs");
