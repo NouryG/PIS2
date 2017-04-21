@@ -136,15 +136,15 @@ catch (Exception $e)
                                             <label style="color: white">Ajout de Collaborateur</label>
                                             <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" id="collab_name" required>
 				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="collab_surname" required>
-                                            <input type="text" maxlength="3" placeholder="Entrez le code du collaborateur..." class="form-control" id="collab_surname" required>
+                                            <input type="text" maxlength="3" placeholder="Entrez le code du collaborateur..." class="form-control" id="collab_code" required>
 				                        	<input type="text"  maxlength="3" placeholder="Entrez le code société du collaborateur..." class="form-control" id="collab_company" required>
 				                        	<input pattern='[0-9]{10}' type="number" placeholder="Entrez son tarif journalier" class="form-control" id="collab_price" required>
                                             <label style="color: white; font-weight:200;">Le collaborateur est :</label>
                                             <label style="color: white; font-weight:200;" class="radio-inline">
-                                                <input checked type="radio" name="activity" id="active" value="active" > Actif
+                                                <input checked type="radio" name="activity" value="1" > Actif
                                                 </label>
                                                 <label style="color: white; font-weight:200;" class="radio-inline">
-                                                <input type="radio" name="activity" id="inactive" value="inactive"> Inactif
+                                                <input type="radio" name="activity" value="0"> Inactif
                                             </label>
 				                        </div>
 			                        <button id="submit" type="submit" class="btn">Ajouter</button>

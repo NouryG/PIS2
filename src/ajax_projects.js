@@ -41,10 +41,12 @@ $("#add_collab").submit(function(event){
 	event.preventDefault();
 	var name = $("#collab_name").val();
 	var surname = $("#collab_surname").val();
+	var code = $("#collab_code").val();
 	var company = $("#collab_company").val();
 	var price = $("#collab_price").val();
-	var dataString = 'nom='+ name + '&prenom='+ surname + '&societe='+ company + '&TJ='+ price;
-	if(name==''||surname==''||company==''||price=='')
+	var activity = $("input[name=activity]:checked").val()
+	var dataString = 'nom='+ name + '&prenom='+ surname + '&code=' + code +'&societe='+ company + '&TJ='+ price + '&actif=' + activity;
+	if(name==''||surname==''||code==''||company==''||price=='')
 		{
 		alert("Merci de remplir tous les champs");
 		}
