@@ -69,3 +69,33 @@ $("#add_collab").submit(function(event){
 		}
 	return false;
 });
+
+$("#add_imput").submit(function(event){
+	event.preventDefault();
+	var code_projet = $("#code_projet_1 option:selected").text();
+	var code_collab = $("#code_collab_1 option:selected").text();
+	var worked_days = $("#worked_days").val();
+	var dataString = 'code_projet='+ code_projet + '&code_collab='+ code_collab + '&jours=' + worked_days;
+	if(code_projet==''||code_collab==''||worked_days=='')
+		{
+		alert("Merci de remplir tous les champs");
+		}
+	else
+		{
+
+			$.ajax({
+			type: "POST",
+			url: "bdd_add_imput.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				$("#collab_result").html('Ajout réussi'); 
+              	$("#collab_result").addClass("alert alert-success");
+              	$("#collab_result").fadeTo(2000, 500).slideUp(500, function(){
+    			$("#collab_result").slideUp(500);
+				});
+              	$('#add_collab').trigger("reset");}
+			});
+		}
+	return false;
+});

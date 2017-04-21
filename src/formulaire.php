@@ -189,7 +189,7 @@ catch (Exception $e)
 
                                             }
                                             ?> </select>
-                                            <input pattern='[0-9]{10}' type="number"   placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="" required>
+                                            <input pattern='[0-9]{10}' type="number"   placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="worked_days" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
