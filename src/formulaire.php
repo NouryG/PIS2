@@ -1,7 +1,7 @@
 <?php
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=ACTEMEDIA;charset=utf8', 'root', 'root');
+	$bdd = new PDO('mysql:host=localhost;dbname=actemedia;charset=utf8', 'root', 'root');
 }
 catch (Exception $e)
 {
@@ -117,8 +117,8 @@ catch (Exception $e)
 				                        	<input type="text" placeholder="Entrez le nom du projet..." class="form-control" id="project_name" required>
 				                        	<input type="text" maxlength="3" placeholder="Entrez le code du projet..." class="form-control" id="project_code" required>
 				                        	<input type="text" placeholder="Entrez le nom du client..." class="form-control" id="project_client" required>
-				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%">
-							                    <input class="form-control" size="16" type="text" id="project_date" readonly required>
+				                        	<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd" style="width: 100%" placeholder="Date de début du projet...">
+							                    <input class="form-control" size="16" type="text" id="project_date" readonly required placeholder="Sélectionnez la date de début du projet...">
 							                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 							</div>
@@ -160,7 +160,7 @@ catch (Exception $e)
                                             <label for="code_projet_1" style="color: white; font-weight:200;">Séléctionner le code du projet:</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
-                                            $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
+                                            $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
                                             or die ('Cannot connect to db');
 
                                                 $result = $conn->query("select code from projet");
