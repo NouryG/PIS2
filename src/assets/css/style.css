@@ -163,8 +163,6 @@ body
 /****** Responsive table ******/
 
 caption {
-    caption-side:top;
+    caption-side: top;
     text-align: center;
 }
-
-

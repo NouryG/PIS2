@@ -17,11 +17,11 @@ catch(Exception $e)
              <tr class="bg-primary">
              <th width="10%">ID</th>
              <th width="20%">Nom</th>
-             <th width="20%">Prenom</th>
-             <th width="20%">Societe</th>
+             <th width="20%">Prénom</th>
+             <th width="20%">Société</th>
              <th width="10%">TJ</th>
              <th width="10%">Actif</th>
-             <th width="10%">Bouton</th>
+             <th width="10%">Action</th>
              </tr>
            </thead>';
 
@@ -35,7 +35,7 @@ while ($donnees = $reponse->fetch())
                <td class="nom" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["nom"].'</td>
                <td class="prenom" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["prenom"].'</td>
                <td class="societe" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["societe"].'</td>
-               <td class="tj" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["tj"].'</td>
+               <td class="tj" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["TJ"].'</td>
                <td class="actif" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["actif"].'</td>
                <td><button type="button" name="delete_btn" data-id3="'.$donnees["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
           </tr>
