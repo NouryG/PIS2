@@ -89,6 +89,7 @@
       $(document).on('click', '#btn_add', function(){
            var nom = $('#nom').text();
            var prenom = $('#prenom').text();
+           var code = $('#code').text();
            var societe = $('#societe').text();
            var tj = $('#tj').text();
            var actif = $('#actif').text();
@@ -105,7 +106,7 @@
            $.ajax({
                 url:"bdd_add_collab.php",
                 method:"POST",
-                data:{nom:nom, prenom:prenom, societe:societe, tj:tj, actif:actif},
+                data:{nom:nom, prenom:prenom,code:code , societe:societe, TJ:tj, actif:actif},
                 dataType:"text",
                 success:function(data)
                 {
@@ -124,7 +125,7 @@
                 data:{id:id, text:text, column_name:column_name},
                 dataType:"text",
                 success:function(data){
-                     alert(data);
+                     //alert(data);
                 }
            });
       }
@@ -148,7 +149,7 @@
       $(document).on('blur', '.tj', function(){
            var id = $(this).data("id2");
            var tj = $(this).text();
-           edit_data(id,tj, "tj");
+           edit_data(id,TJ, "tj");
       });
       $(document).on('blur', '.actif', function(){
            var id = $(this).data("id2");
@@ -167,7 +168,7 @@
                      data:{id:id},
                      dataType:"text",
                      success:function(data){
-                          alert("Ok");
+                          //alert("Ok");
                           fetch_data();
                      }
                 });

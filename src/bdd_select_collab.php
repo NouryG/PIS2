@@ -18,6 +18,7 @@ catch(Exception $e)
              <th width="10%">ID</th>
              <th width="20%">Nom</th>
              <th width="20%">Prénom</th>
+              <th width="20%">Code</th>
              <th width="20%">Société</th>
              <th width="10%">TJ</th>
              <th width="10%">Actif</th>
@@ -34,6 +35,7 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["id"].'</td>
                <td class="nom" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["nom"].'</td>
                <td class="prenom" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["prenom"].'</td>
+               <td class="code" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["code"].'</td>
                <td class="societe" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["societe"].'</td>
                <td class="tj" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["TJ"].'</td>
                <td class="actif" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["actif"].'</td>
@@ -46,6 +48,7 @@ $output .= '
           <td></td>
           <td id="nom" contenteditable></td>
           <td id="prenom" contenteditable></td>
+          <td id="code" contenteditable></td>
           <td id="societe" contenteditable></td>
           <td id="tj" contenteditable></td>
           <td id="actif" contenteditable></td>
