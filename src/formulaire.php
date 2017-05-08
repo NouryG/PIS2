@@ -139,7 +139,7 @@ catch (Exception $e)
                                     <form role="form"  id="add_imput">
                                         <div class="form-group">
                                             <label style="color: white; margin-bottom: 30px;">Ajout d'imputation</label><br>
-                                            <label for="code_projet_1" style="color: white; font-weight:200;">Séléctionner le code du projet:</label>
+                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le code du projet:</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
@@ -155,7 +155,7 @@ catch (Exception $e)
 
                                             }
                                             ?> </select>
-                                            <label for="code_collab_1" style="color: white;font-weight:200;">Séléctionner le code du collaborateur: </label>
+                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le code du collaborateur: </label>
                                             <select class="form-control" id="code_collab_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
