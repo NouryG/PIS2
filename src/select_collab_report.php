@@ -89,17 +89,21 @@ while ($donnees = $reponse3->fetch()) {
     }
 
     // Récupération du total AMA
-    $AMA = $bdd->query('SELECT SUM(jours)
+    $AMA = $bdd->prepare('SELECT SUM(jours)
                         AS total_AMA
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
                         AND societe="AMA"
                         AND actif="1"');
+    $AMA->execute(array(
+    'code_projet' => $code,
+    ));
 
     // Affichage du total AMA
+    $somme_AMA = $AMA->fetch();
     $output .= '
-        <td>'.$AMA["total_AMA"].'</td>
+        <td>'.$somme_AMA["total_AMA"].'</td>
     ';
 
     // Affichage des imputations externes pour ce projet
@@ -119,24 +123,29 @@ while ($donnees = $reponse3->fetch()) {
         ';
     }
 
-    // Récupération du total externe
-    $EXT = $bdd->query('SELECT SUM(jours)
+    // Récupération du total AMA
+    $EXT = $bdd->prepare('SELECT SUM(jours)
                         AS total_EXT
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
                         AND societe <> "AMA"
                         AND actif="1"');
+    $EXT->execute(array(
+    'code_projet' => $code,
+    ));
 
     // Affichage du total externe
+    $somme_EXT = $EXT->fetch();
     $output .= '
-        <td>'.$EXT["total_EXT"].'</td>
+        <td>'.$somme_EXT["total_EXT"].'</td>
     ';
 
     // Affichage du total complet
-    /*$output .= '
-        <td>'.$AMA["total_AMA"]. + .$EXT["total_EXT"].'</td>
-    ';*/
+    $somme = $somme_AMA["total_AMA"] + $somme_EXT["total_EXT"];
+    $output .= '
+        <td>'.$somme.'</td>
+    ';
 
 
     // Fin de la ligne du projet sélectionné
@@ -144,22 +153,6 @@ while ($donnees = $reponse3->fetch()) {
         </tr>
     ';
 }
-
-/*// Sélection des projets
-$reponse3 = $bdd->query('SELECT *
-                        FROM collaborateurs as c, imputation as i
-                        WHERE c.code = i.code_collab
-                        AND actif="1"');
-
-while ($donnees = $reponse3->fetch())
-{
-     $output .= '
-          <tr>
-               <td style="background-color: lightblue;">'.$donnees["code_projet"].'</td>
-               <td>'.$donnees["jours"].'</td>
-          </tr>
-     ';
-}*/
 
 $output .= '
       </table>
