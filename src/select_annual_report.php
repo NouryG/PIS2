@@ -31,8 +31,8 @@ $output = '
                 </tr>
             </thead>';
 
-/* // Récupération du total AMA
-    $AMA = $bdd->prepare('SELECT SUM(jours)
+/* // Somme des jours produits
+    $AMA = $bdd->query('SELECT SUM(jours)
                         AS total_AMA
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
