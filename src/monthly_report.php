@@ -78,7 +78,7 @@
       function fetch_data()
       {
            $.ajax({
-                url:"select_collab_report.php",
+                url:"select_monthly_report.php",
                 method:"POST",
                 success:function(data){
                      $('#live_data').html(data);

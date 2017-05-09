@@ -19,19 +19,19 @@ $output = '
            <table class="table table-bordered">
            <thead>
              <tr class="bg-primary">
-             <td style="background-color: lightgrey;"></td>';
+             <td style="background-color: #FAFAFA;"></td>';
 
 
 // Affichage des collaborateurs AMA
 while ($donnees = $reponse1->fetch())
 {
      $output .= '
-          <th>'.$donnees["code"].'</th>
+          <td style="background-color: lightgrey;">'.$donnees["code"].'</th>
      ';
 }
 
 $output .= '
-      <th style="background-color: lightblue;">AMA</th>';
+      <th style="background-color: #A4A4A4;">AMA</th>';
 
 // Sélection des collaborateurs externes
 $reponse2 = $bdd->query('SELECT *
@@ -39,17 +39,17 @@ $reponse2 = $bdd->query('SELECT *
                         WHERE societe<>"AMA"
                         AND actif="1"');
 
-// Affichage des collaborateurs AMA
+// Affichage des collaborateurs externes
 while ($donnees = $reponse2->fetch())
 {
      $output .= '
-          <th>'.$donnees["code"].'</th>
+          <td style="background-color: lightgrey;">'.$donnees["code"].'</th>
      ';
 }
 
 $output .= '
-      <th style="background-color: lightblue;">EXT</th>
-      <th style="background-color: darkblue;">TOT</th>
+      <th style="background-color: #A4A4A4;">EXT</th>
+      <th style="background-color: #848484;">TOT</th>
       </tr>
       </thead>
       ';
