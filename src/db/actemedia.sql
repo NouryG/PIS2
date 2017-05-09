@@ -1,17 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Client :  localhost:8889
--- Généré le :  Ven 21 Avril 2017 à 19:22
--- Version du serveur :  5.6.35
--- Version de PHP :  7.0.15
+-- Client :  127.0.0.1
+-- Généré le :  Mar 09 Mai 2017 à 18:27
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Base de données :  `ACTEMEDIA`
+-- Base de données :  `actemedia`
 --
 
 -- --------------------------------------------------------
@@ -24,6 +30,14 @@ CREATE TABLE `client` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`id`, `nom`) VALUES
+(1, 'Bethesda'),
+(2, 'Apple');
 
 -- --------------------------------------------------------
 
@@ -57,8 +71,8 @@ INSERT INTO `collaborateurs` (`id`, `nom`, `prenom`, `code`, `societe`, `TJ`, `a
 
 CREATE TABLE `imputation` (
   `id` int(11) NOT NULL,
-  `code_projet` varchar(255) NOT NULL,
-  `code_collab` varchar(255) NOT NULL,
+  `code_projet` int(11) NOT NULL,
+  `code_collab` int(11) NOT NULL,
   `jours` varchar(255) NOT NULL,
   `valeur` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -68,8 +82,8 @@ CREATE TABLE `imputation` (
 --
 
 INSERT INTO `imputation` (`id`, `code_projet`, `code_collab`, `jours`, `valeur`) VALUES
-(1, 'MAC', 'SJO', '15', '0000-00-00'),
-(2, 'FAL', 'ZZZ', '2', '0000-00-00');
+(1, 2, 1, '15', '2017-05-31'),
+(2, 1, 2, '12', '2017-05-23');
 
 -- --------------------------------------------------------
 
@@ -81,7 +95,7 @@ CREATE TABLE `projet` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `code` varchar(3) NOT NULL,
-  `client` varchar(255) NOT NULL,
+  `client` int(11) NOT NULL,
   `date_debut` date NOT NULL,
   `jours_vendus` int(11) NOT NULL,
   `jours_produits` int(11) DEFAULT '0',
@@ -95,8 +109,8 @@ CREATE TABLE `projet` (
 --
 
 INSERT INTO `projet` (`id`, `nom`, `code`, `client`, `date_debut`, `jours_vendus`, `jours_produits`, `CA_vendu`, `cout_projet`, `RAF_reel`) VALUES
-(1, 'Fallout', 'FAL', 'Bethesda', '2017-03-29', 25, 0, 0, 0, 0),
-(2, 'Macbook', 'MAC', 'Apple', '2017-03-30', 25, 0, 0, 0, 12);
+(1, 'Fallout', 'FAL', 1, '2017-03-29', 25, 0, 0, 0, 0),
+(2, 'Macbook', 'MAC', 2, '2017-03-30', 25, 0, 0, 0, 12);
 
 --
 -- Index pour les tables exportées
@@ -118,13 +132,16 @@ ALTER TABLE `collaborateurs`
 -- Index pour la table `imputation`
 --
 ALTER TABLE `imputation`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_collab` (`code_collab`),
+  ADD KEY `id_projet` (`code_projet`);
 
 --
 -- Index pour la table `projet`
 --
 ALTER TABLE `projet`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_client` (`client`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -134,7 +151,7 @@ ALTER TABLE `projet`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `collaborateurs`
 --
@@ -150,3 +167,23 @@ ALTER TABLE `imputation`
 --
 ALTER TABLE `projet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `imputation`
+--
+ALTER TABLE `imputation`
+  ADD CONSTRAINT `id_collab` FOREIGN KEY (`code_collab`) REFERENCES `collaborateurs` (`id`),
+  ADD CONSTRAINT `id_projet` FOREIGN KEY (`code_projet`) REFERENCES `projet` (`id`);
+
+--
+-- Contraintes pour la table `projet`
+--
+ALTER TABLE `projet`
+  ADD CONSTRAINT `id_client` FOREIGN KEY (`client`) REFERENCES `client` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
