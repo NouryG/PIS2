@@ -31,24 +31,6 @@ $output = '
                 </tr>
             </thead>';
 
-/* // Somme des jours produits
-    $AMA = $bdd->query('SELECT SUM(jours)
-                        AS total_AMA
-                        FROM collaborateurs as c, imputation as i
-                        WHERE c.code = i.code_collab
-                        AND code_projet LIKE :code_projet
-                        AND societe="AMA"
-                        AND actif="1"');
-    $AMA->execute(array(
-    'code_projet' => $code,
-    ));
-
-    // Affichage du total AMA
-    $somme_AMA = $AMA->fetch();
-    $output .= '
-        <td>'.$somme_AMA["total_AMA"].'</td>
-    ';*/
-
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
@@ -69,6 +51,15 @@ while ($donnees = $reponse->fetch())
           </tr>
      ';
 }
+
+// Somme des jours produits
+$JP = $bdd->query('SELECT SUM(jours_produits) FROM projet');
+
+/*// Affichage du total jours produits
+$somme_JP = $JP->fetch();
+$output .= '
+    <td>'.$somme_JP["total_JP"].'</td>
+';*/
 
 // Affichage des totaux
 $output .= '
