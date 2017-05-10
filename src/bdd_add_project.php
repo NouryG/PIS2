@@ -8,7 +8,7 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && isset($_POST['date_debut']) && isset($_POST['jours_vendus']) && isset($_POST['cout_projet'])){
+if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && isset($_POST['date_debut']) && isset($_POST['jours_vendus']) && isset($_POST['CA_vendu'])){
 
     if (isset($_POST['RAF_reel'])){
         $req = $bdd->prepare('INSERT INTO projet(nom, code, client, date_debut, jours_vendus, CA_vendu, RAF_reel) VALUES(:nom, :code, :client, :date_debut, :jours_vendus, :CA_vendu, :RAF_reel)');
