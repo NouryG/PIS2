@@ -106,7 +106,7 @@ catch (Exception $e)
                 							</div>
                                             <input pattern='[0-9]{10}' type="number" placeholder="Nombre de jours vendus" class="form-control" id="project_sold_days" required>
                                             <input pattern='[0-9]{10}' type="number" placeholder="RAF Réel (laisser vide pour un calcul automatique)" class="form-control" id="project_raf">
-                                            <input pattern='[0-9]{10}' type="number" placeholder="Tarif de la commande" class="form-control" id="project_price">
+                                            <input pattern='[0-9]{10}' type="number" placeholder="CA Vendu" class="form-control" id="project_price">
 				                        </div>
 			                        <button id="submit" type="submit" class="btn">Ajouter</button>
 			                     </form>
