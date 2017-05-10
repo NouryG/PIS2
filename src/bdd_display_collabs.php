@@ -133,7 +133,7 @@
       //Pour l'édition de tous les champs
       $(document).on('blur', '.code', function(){
            var id = $(this).data("id1");
-           var code = $(this).text();
+           var code = $(this).text().toUpperCase();
            edit_data(id, code, "code");
       });
       $(document).on('blur', '.nom', function(){
@@ -148,7 +148,7 @@
       });
       $(document).on('blur', '.societe', function(){
            var id = $(this).data("id2");
-           var societe = $(this).text();
+           var societe = $(this).text().toUpperCase();
            edit_data(id,societe, "societe");
       });
       $(document).on('blur', '.tj', function(){
