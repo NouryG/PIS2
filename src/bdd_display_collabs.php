@@ -131,6 +131,11 @@
       }
 
       //Pour l'édition de tous les champs
+      $(document).on('blur', '.code', function(){
+           var id = $(this).data("id1");
+           var code = $(this).text();
+           edit_data(id, code, "code");
+      });
       $(document).on('blur', '.nom', function(){
            var id = $(this).data("id1");
            var nom = $(this).text();

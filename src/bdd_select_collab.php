@@ -31,7 +31,7 @@ while ($donnees = $reponse->fetch())
 {
      $output .= '
           <tr>
-               <td class="nom" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["code"].'</td>
+               <td class="code" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["code"].'</td>
                <td class="nom" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["nom"].'</td>
                <td class="prenom" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["prenom"].'</td>
                <td class="societe" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["societe"].'</td>
