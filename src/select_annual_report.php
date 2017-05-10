@@ -25,7 +25,8 @@ $output = '
                     <th width="7%">Jours vendus</th>
                     <th width="10%">TJM vendu</th>
                     <th width="7%">Jours produits</th>
-                    <th width="7%">RAF</th>
+                    <th width="7%">RAF estimé</th>
+                    <th width="20%">RAF réel (0 par défaut)</th>
                     <th width="10%">TJ projet</th>
                     <th width="2%">CA restant</th>
                 </tr>
@@ -79,12 +80,14 @@ while ($donnees = $reponse->fetch())
         <td>'.$produit_STT["produit_STT"].'</td>
     ';
 
-    $temp = $donnees["jours_vendus"] - $donnees["jours_produits"];
+    $temp_Produits = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
+    $temp_RAF = $donnees["jours_vendus"] - $temp_Produits;
     $output .= '
                <td>'.$donnees["jours_vendus"].'</td>
                <td>'.$donnees["id"].'</td>
-               <td>'.$donnees["jours_produits"].'</td>
-               <td>'.$temp.'</td>
+               <td>'.$temp_Produits.'</td>
+               <td>'.$temp_RAF.'</td>
+               <td>'.$donnees["RAF_reel"].'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["id"].'</td>
           </tr>
@@ -146,28 +149,24 @@ $output .= '
     <th></th>
 ';
 
-// Somme des jours produits
-$JP = $bdd->query('SELECT SUM(jours_produits) AS somme_JP FROM projet');
-
 // Affichage du total jours produits
-$somme_JP = $JP->fetch();
+$somme_JP = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
 $output .= '
-    <th>'.$somme_JP["somme_JP"].'</th>
+    <th>'.$somme_JP.'</th>
 ';
 
-// Somme des RAF
-/*$RAF = $bdd->query('SELECT SUM(RAF_reel) AS somme_RAF FROM projet');
+$temp = $somme_JV["somme_JV"] - $somme_JP["somme_JP"];
+$output .= '
+    <th>'.$temp.'</th>
+';
+
+// Somme des RAF réels
+$RAF = $bdd->query('SELECT SUM(RAF_reel) AS somme_RAF FROM projet');
 
 // Affichage du total jours produits
 $somme_RAF = $RAF->fetch();
 $output .= '
     <th>'.$somme_RAF["somme_RAF"].'</th>
-    <th></th>
-    <th></th>
-';*/
-$temp = $somme_JV["somme_JV"] - $somme_JP["somme_JP"];
-$output .= '
-    <th>'.$temp.'</th>
     <th></th>
     <th></th>
 ';
