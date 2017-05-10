@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Table collaborateurs</title>
+        <title>Rapport Annuel</title>
         <link rel="icon" type="image/png" href="assets/ico/ms-icon-150x150.png">
 
         <!-- CSS -->
@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>  
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="accueil.php">Acte Media - Suivi de Production</a>
                 </div>
@@ -88,4 +88,30 @@
       fetch_data();
 
  });
+
+ //Edition du RAF Réel
+
+//Edition = ENCOURS
+
+ function edit_data(id, text, column_name)
+ {
+      $.ajax({
+           url:"bdd_edit_projet.php",
+           method:"POST",
+           data:{id:id, text:text, column_name:column_name},
+           dataType:"text",
+           success:function(data){
+                alert(data);
+           }
+      });
+ }
+
+
+ $(document).on('blur', '.RAF_reel', function(){
+      var id = $(this).data("id1");
+      var value = $(this).text().toUpperCase();
+      edit_data(id, value, "RAF_reel");
+ });
+
+
  </script>
