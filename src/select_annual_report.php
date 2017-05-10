@@ -79,11 +79,12 @@ while ($donnees = $reponse->fetch())
         <td>'.$produit_STT["produit_STT"].'</td>
     ';
 
+    $temp = $donnees["jours_vendus"] - $donnees["jours_produits"];
     $output .= '
                <td>'.$donnees["jours_vendus"].'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["jours_produits"].'</td>
-               <td>ICI SOUSTACTION vendu - produits (1ere ligne - troisieme juste au dessus)</td>
+               <td>'.$temp.'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["id"].'</td>
           </tr>
@@ -155,12 +156,18 @@ $output .= '
 ';
 
 // Somme des RAF
-$RAF = $bdd->query('SELECT SUM(RAF_reel) AS somme_RAF FROM projet');
+/*$RAF = $bdd->query('SELECT SUM(RAF_reel) AS somme_RAF FROM projet');
 
 // Affichage du total jours produits
 $somme_RAF = $RAF->fetch();
 $output .= '
     <th>'.$somme_RAF["somme_RAF"].'</th>
+    <th></th>
+    <th></th>
+';*/
+$temp = $somme_JV["somme_JV"] - $somme_JP["somme_JP"];
+$output .= '
+    <th>'.$temp.'</th>
     <th></th>
     <th></th>
 ';
