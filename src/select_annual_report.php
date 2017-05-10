@@ -34,14 +34,52 @@ $output = '
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
+    $code = $donnees['code'];
      $output .= '
           <tr>
                <td>'.$donnees["code"].'</td>
                <td>'.$donnees["nom"].'</td>
                <td>'.$donnees["client"].'</td>
                <td>'.$donnees["CA_vendu"].'</td>
-               <td>'.$donnees["id"].'</td>
-               <td>'.$donnees["id"].'</td>
+      ';
+
+    // Calcul des jours produits AMA pour le projet sélectionné
+    $AMA = $bdd->prepare('SELECT SUM(jours)
+                        AS produit_AMA
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND code_projet LIKE :code_projet
+                        AND societe="AMA"
+                        AND actif="1"');
+    $AMA->execute(array(
+    'code_projet' => $code,
+    ));
+
+    // Affichage des jours produits AMA
+    $produit_AMA = $AMA->fetch();
+    $output .= '
+        <td>'.$produit_AMA["produit_AMA"].'</td>
+    ';
+
+    // Calcul des jours produits sous-traitant pour le projet sélectionné
+    $STT = $bdd->prepare('SELECT SUM(jours)
+                        AS produit_STT
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND code_projet LIKE :code_projet
+                        AND societe <> "AMA"
+                        AND actif="1"');
+    $STT->execute(array(
+    'code_projet' => $code,
+    ));
+
+    // Affichage des jours produits sous-traitant
+    $produit_STT = $STT->fetch();
+    $output .= '
+        <td>'.$produit_STT["produit_STT"].'</td>
+    ';
+
+    $output .= '
                <td>'.$donnees["jours_vendus"].'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["jours_produits"].'</td>
@@ -67,27 +105,35 @@ $CA_vendu = $bdd->query('SELECT SUM(CA_vendu) AS somme_CA_vendu FROM projet');
 $somme_CA = $CA_vendu->fetch();
 $output .= '
     <th>'.$somme_CA["somme_CA_vendu"].'</th>
-    <th></th>
-    <th></th>
 ';
 
-/*// Somme du produit AMA
-$cmd = $bdd->query('SELECT SUM(cout_projet) AS somme_cout FROM projet');
+// Somme du produit AMA
+$AMA = $bdd->query('SELECT SUM(jours)
+                    AS produit_AMA
+                    FROM collaborateurs as c, imputation as i
+                    WHERE c.code = i.code_collab
+                    AND societe="AMA"
+                    AND actif="1"');
 
-// Affichage du total produit AMA
-$somme_commande = $cmd->fetch();
+// Affichage de la somme des jours produits AMA
+$produit_AMA = $AMA->fetch();
 $output .= '
-    <th>'.$somme_commande["somme_cout"].'</th>
-';*/
+    <td>'.$produit_AMA["produit_AMA"].'</td>
+';
 
-/*// Somme du produit STT
-$cmd = $bdd->query('SELECT SUM(cout_projet) AS somme_cout FROM projet');
+// Somme du produit STT
+$STT = $bdd->query('SELECT SUM(jours)
+                    AS produit_STT
+                    FROM collaborateurs as c, imputation as i
+                    WHERE c.code = i.code_collab
+                    AND societe<>"AMA"
+                    AND actif="1"');
 
-// Affichage du total produit STT
-$somme_commande = $cmd->fetch();
+// Affichage de la somme des jours produits AMA
+$produit_STT = $STT->fetch();
 $output .= '
-    <th>'.$somme_commande["somme_cout"].'</th>
-';*/
+    <td>'.$produit_STT["produit_STT"].'</td>
+';
 
 // Somme des jours vendus
 $JV = $bdd->query('SELECT SUM(jours_vendus) AS somme_JV FROM projet');
