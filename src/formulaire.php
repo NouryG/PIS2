@@ -52,9 +52,9 @@ catch (Exception $e)
                             <ul class="dropdown-menu">
                                 <li>
                                     <a  id="" class="hidden-xs"  href="monthly_report.php">Rapport Mensuel</a>
-                                    <a  id="" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
+                                    <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
                                     <a  id="" class="hidden-xs"  href="annual_report.php">Rapport Annuel</a>
-                                    <a  id="" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
+                                    <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
                                 </li>
                             </ul>
                         </li>
