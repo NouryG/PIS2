@@ -99,10 +99,10 @@
            url:"bdd_edit_projet.php",
            method:"POST",
            data:{id:id, text:text, column_name:column_name},
+
            dataType:"text",
            success:function(data){
-                alert(data);
-           }
+          }
       });
  }
 

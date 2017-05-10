@@ -89,7 +89,7 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["id"].'</td>
                <td>'.$temp_Produits.'</td>
                <td>'.$temp_RAF.'</td>
-               <td class="RAF_reel" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["RAF_reel"].'</td>
+               <td class="RAF_reel" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["RAF_reel"].'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["id"].'</td>
           </tr>
