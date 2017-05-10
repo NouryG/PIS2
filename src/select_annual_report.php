@@ -40,7 +40,7 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["code"].'</td>
                <td>'.$donnees["nom"].'</td>
                <td>'.$donnees["client"].'</td>
-               <td>'.$donnees["CA_vendu"].'</td>
+               <td>'.$donnees["CA_vendu"].' €</td>
       ';
 
     // Calcul des jours produits AMA pour le projet sélectionné
@@ -83,7 +83,7 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["jours_vendus"].'</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["jours_produits"].'</td>
-               <td>'.$donnees["RAF_reel"].'</td>
+               <td>ICI SOUSTACTION vendu - produits (1ere ligne - troisieme juste au dessus)</td>
                <td>'.$donnees["id"].'</td>
                <td>'.$donnees["id"].'</td>
           </tr>
@@ -104,7 +104,7 @@ $CA_vendu = $bdd->query('SELECT SUM(CA_vendu) AS somme_CA_vendu FROM projet');
 // Affichage du total commande
 $somme_CA = $CA_vendu->fetch();
 $output .= '
-    <th>'.$somme_CA["somme_CA_vendu"].'</th>
+    <th>'.$somme_CA["somme_CA_vendu"].' €</th>
 ';
 
 // Somme du produit AMA
