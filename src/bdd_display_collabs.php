@@ -154,7 +154,7 @@
       $(document).on('blur', '.tj', function(){
            var id = $(this).data("id2");
            var tj = $(this).text();
-           edit_data(id,TJ, "tj");
+           edit_data(id,tj, "tj");
       });
       $(document).on('blur', '.actif', function(){
            var id = $(this).data("id2");

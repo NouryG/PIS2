@@ -32,6 +32,8 @@ $output = '
                 </tr>
             </thead>';
 
+
+
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
