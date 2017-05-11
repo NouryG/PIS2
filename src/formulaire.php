@@ -229,6 +229,7 @@ catch (Exception $e)
             startView: 3,
             minView: 3,
             maxView: 4,
+            autoclose: 1,
             format: 'yyyy-mm'
         });
         </script>
