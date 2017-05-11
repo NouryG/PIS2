@@ -32,39 +32,98 @@ $output = '
                 </tr>
             </thead>';
 
-
-
+$total_TJM_vendu = 0; // Pour le total TJM vendu
+$total_TJ_projet = 0; // Pour le total TJ projet
+$TJ_projet_count = 0;
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
     $code = $donnees['code'];
-     $output .= '
-          <tr>
-               <td>'.$donnees["code"].'</td>
-               <td>'.$donnees["nom"].'</td>
-               <td>'.$donnees["client"].'</td>
-               <td>'.$donnees["CA_vendu"].' €</td>
-      ';
+    $output .= '
+        <tr>
+            <td>'.$donnees["code"].'</td>
+            <td>'.$donnees["nom"].'</td>
+            <td>'.$donnees["client"].'</td>
+            <td>'.$donnees["CA_vendu"].' €</td>
+    ';
 
-    // Calcul des jours produits AMA pour le projet sélectionné
-    $AMA = $bdd->prepare('SELECT SUM(jours)
-                        AS produit_AMA
+    // Calcul du produit AMA pour le projet sélectionné
+    $prod_AMA = 0;
+    $total_Produit_AMA = 0; // Pour le total plus tard
+    $collab_AMA = $bdd->prepare('SELECT *
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
                         AND societe="AMA"
                         AND actif="1"');
-    $AMA->execute(array(
+    $collab_AMA->execute(array(
     'code_projet' => $code,
     ));
 
-    // Affichage des jours produits AMA
-    $produit_AMA = $AMA->fetch();
+    while ($collab = $collab_AMA->fetch())
+    {
+        $prod_AMA += $collab["jours"] * $collab["TJ"];
+    }
+
+    $total_Produit_AMA += $prod_AMA; // Ajout du produit de ce collaborateur au total produit AMA
+
+    // Affichage du produit AMA
     $output .= '
-        <td>'.$produit_AMA["produit_AMA"].'</td>
+        <td>'.$prod_AMA.' €</td>
     ';
 
-    // Calcul des jours produits sous-traitant pour le projet sélectionné
+    // Calcul du produit STT pour le projet sélectionné
+    $prod_STT = 0;
+    $total_Produit_STT = 0; // Pour le total plus tard
+    $collab_STT = $bdd->prepare('SELECT *
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND code_projet LIKE :code_projet
+                        AND societe<>"AMA"
+                        AND actif="1"');
+    $collab_STT->execute(array(
+    'code_projet' => $code,
+    ));
+
+    while ($collab = $collab_STT->fetch())
+    {
+        $prod_STT += $collab["jours"] * $collab["TJ"];
+    }
+
+    $total_Produit_STT += $prod_STT; // Ajout du produit de ce collaborateur au total produit AMA
+
+    // Affichage du produit STT
+    $output .= '
+        <td>'.$prod_STT.' €</td>
+    ';
+
+    // Affichage des jours vendus
+    $output .= '
+               <td>'.$donnees["jours_vendus"].'</td>
+    ';
+
+    // Calcul du TJM vendu
+    $tjm = $donnees["CA_vendu"] / $donnees["jours_vendus"];
+    $total_TJM_vendu += $tjm;
+
+    // Affichage du TJM vendu
+    $output .= '
+               <td>'.$tjm.' €</td>
+    ';
+
+    // Calcul du RAF estimé
+    $AMA = $bdd->prepare('SELECT SUM(jours)
+                        AS produit_AMA
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND code_projet LIKE :code_projet
+                        AND societe = "AMA"
+                        AND actif="1"');
+    $AMA->execute(array(
+    'code_projet' => $code,
+    ));
+    $produit_AMA = $AMA->fetch();
+
     $STT = $bdd->prepare('SELECT SUM(jours)
                         AS produit_STT
                         FROM collaborateurs as c, imputation as i
@@ -75,25 +134,42 @@ while ($donnees = $reponse->fetch())
     $STT->execute(array(
     'code_projet' => $code,
     ));
-
-    // Affichage des jours produits sous-traitant
     $produit_STT = $STT->fetch();
-    $output .= '
-        <td>'.$produit_STT["produit_STT"].'</td>
-    ';
 
     $temp_Produits = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
     $temp_RAF = $donnees["jours_vendus"] - $temp_Produits;
     $output .= '
-               <td>'.$donnees["jours_vendus"].'</td>
-               <td>'.$donnees["id"].'</td>
                <td>'.$temp_Produits.'</td>
                <td>'.$temp_RAF.'</td>
                <td class="RAF_reel" data-id1="'.$donnees["id"].'" contenteditable>'.$donnees["RAF_reel"].'</td>
-               <td>'.$donnees["id"].'</td>
-               <td>'.$donnees["id"].'</td>
-          </tr>
-     ';
+    ';
+
+    // Calcul du TJ projet
+    if ($donnees["RAF_reel"] == 0) {
+        $TJ_Projet = $donnees["CA_vendu"] / ($temp_Produits + $temp_RAF);
+        $RAF_final = $temp_RAF;
+    }
+    else {
+        $TJ_Projet = $donnees["CA_vendu"] / ($temp_Produits + $donnees["RAF_reel"]);
+        $RAF_final = $donnees["RAF_reel"];
+    }
+    $total_TJ_projet += $TJ_Projet;
+    $TJ_projet_count += 1;
+
+    // Affichage du TJ projet
+    $output .= '
+        <td>'.$TJ_Projet.'</td>
+    ';
+
+    // Calcul du CA restant
+    $CA_restant = $RAF_final * $TJ_Projet;
+
+    // Affichage du CA restant
+    $output .= '
+        <td>'.$CA_restant.'</td>
+        </tr>
+    ';
+
 }
 
 // Affichage des totaux
@@ -113,32 +189,14 @@ $output .= '
     <th>'.$somme_CA["somme_CA_vendu"].' €</th>
 ';
 
-// Somme du produit AMA
-$AMA = $bdd->query('SELECT SUM(jours)
-                    AS produit_AMA
-                    FROM collaborateurs as c, imputation as i
-                    WHERE c.code = i.code_collab
-                    AND societe="AMA"
-                    AND actif="1"');
-
-// Affichage de la somme des jours produits AMA
-$produit_AMA = $AMA->fetch();
+// Total du produit AMA
 $output .= '
-    <td>'.$produit_AMA["produit_AMA"].'</td>
+    <td>'.$total_Produit_AMA.' €</td>
 ';
 
-// Somme du produit STT
-$STT = $bdd->query('SELECT SUM(jours)
-                    AS produit_STT
-                    FROM collaborateurs as c, imputation as i
-                    WHERE c.code = i.code_collab
-                    AND societe<>"AMA"
-                    AND actif="1"');
-
-// Affichage de la somme des jours produits AMA
-$produit_STT = $STT->fetch();
+// Total du produit AMA
 $output .= '
-    <td>'.$produit_STT["produit_STT"].'</td>
+    <td>'.$total_Produit_STT.' €</td>
 ';
 
 // Somme des jours vendus
@@ -148,7 +206,11 @@ $JV = $bdd->query('SELECT SUM(jours_vendus) AS somme_JV FROM projet');
 $somme_JV = $JV->fetch();
 $output .= '
     <th>'.$somme_JV["somme_JV"].'</th>
-    <th></th>
+';
+
+// Affichage du total TJM vendu
+$output .= '
+    <th>'.$total_TJM_vendu.' €</th>
 ';
 
 // Affichage du total jours produits
@@ -169,12 +231,17 @@ $RAF = $bdd->query('SELECT SUM(RAF_reel) AS somme_RAF FROM projet');
 $somme_RAF = $RAF->fetch();
 $output .= '
     <th>'.$somme_RAF["somme_RAF"].'</th>
-    <th></th>
-    <th></th>
+';
+
+// Affichage total TJ projet
+$temp_TJ_projet = $total_TJ_projet / $TJ_projet_count;
+$output .= '
+    <th>'.$temp_TJ_projet.'</th>
 ';
 
 // Fin de la ligne des totaux
 $output .= '
+        <th></th>
     </tr>
 ';
 
