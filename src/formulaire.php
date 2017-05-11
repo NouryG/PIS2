@@ -140,35 +140,35 @@ catch (Exception $e)
                                     <form role="form"  id="add_imput">
                                         <div class="form-group">
                                             <label style="color: white; margin-bottom: 30px;">Ajout d'imputation</label><br>
-                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le code du projet:</label>
+                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet:</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
                                             or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select code from projet");
+                                                $result = $conn->query("select nom from projet");
 
                                                 while ($row = $result->fetch_assoc()) {
 
-                                                              unset($code);
-                                                              $code = $row['code'];
-                                                              echo '<option value="'.$code.'">'.$code.'</option>';
+                                                              unset($nom);
+                                                              $nom = $row['nom'];
+                                                              echo '<option value="'.$nom.'">'.$nom.'</option>';
 
                                             }
                                             ?> </select>
-                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le code du collaborateur: </label>
+                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur: </label>
                                             <select class="form-control" id="code_collab_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
                                             or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select code from collaborateurs");
+                                                $result = $conn->query("select nom from collaborateurs");
 
                                                 while ($row = $result->fetch_assoc()) {
 
-                                                              unset($code);
-                                                              $code = $row['code'];
-                                                              echo '<option value="'.$code.'">'.$code.'</option>';
+                                                              unset($nom);
+                                                              $nom = $row['nom'];
+                                                              echo '<option value="'.$nom.'">'.$nom.'</option>';
 
                                             }
                                             ?> </select>
