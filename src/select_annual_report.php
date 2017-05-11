@@ -28,13 +28,14 @@ $output = '
                     <th width="7%">RAF estimé</th>
                     <th width="20%">RAF réel (0 par défaut)</th>
                     <th width="10%">TJ projet</th>
-                    <th width="2%">CA restant</th>
+                    <th width=auto>CA restant</th>
                 </tr>
             </thead>';
 
 $total_TJM_vendu = 0; // Pour le total TJM vendu
 $total_TJ_projet = 0; // Pour le total TJ projet
 $TJ_projet_count = 0;
+$total_CA_restant = 0; // Pour le total du CA restant
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
@@ -103,7 +104,7 @@ while ($donnees = $reponse->fetch())
     ';
 
     // Calcul du TJM vendu
-    $tjm = $donnees["CA_vendu"] / $donnees["jours_vendus"];
+    $tjm = round($donnees["CA_vendu"] / $donnees["jours_vendus"]);
     $total_TJM_vendu += $tjm;
 
     // Affichage du TJM vendu
@@ -146,11 +147,11 @@ while ($donnees = $reponse->fetch())
 
     // Calcul du TJ projet
     if ($donnees["RAF_reel"] == 0) {
-        $TJ_Projet = $donnees["CA_vendu"] / ($temp_Produits + $temp_RAF);
+        $TJ_Projet = round($donnees["CA_vendu"] / ($temp_Produits + $temp_RAF));
         $RAF_final = $temp_RAF;
     }
     else {
-        $TJ_Projet = $donnees["CA_vendu"] / ($temp_Produits + $donnees["RAF_reel"]);
+        $TJ_Projet = round($donnees["CA_vendu"] / ($temp_Produits + $donnees["RAF_reel"]));
         $RAF_final = $donnees["RAF_reel"];
     }
     $total_TJ_projet += $TJ_Projet;
@@ -158,15 +159,16 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du TJ projet
     $output .= '
-        <td>'.$TJ_Projet.'</td>
+        <td>'.$TJ_Projet.' €</td>
     ';
 
     // Calcul du CA restant
     $CA_restant = $RAF_final * $TJ_Projet;
+    $total_CA_restant += $CA_restant;
 
     // Affichage du CA restant
     $output .= '
-        <td>'.$CA_restant.'</td>
+        <td>'.$CA_restant.' €</td>
         </tr>
     ';
 
@@ -233,15 +235,15 @@ $output .= '
     <th>'.$somme_RAF["somme_RAF"].'</th>
 ';
 
-// Affichage total TJ projet
-$temp_TJ_projet = $total_TJ_projet / $TJ_projet_count;
+// Affichage total TJ projet et CA restant total
+$temp_TJ_projet = round($total_TJ_projet / $TJ_projet_count);
 $output .= '
-    <th>'.$temp_TJ_projet.'</th>
+    <th>'.$temp_TJ_projet.' €</th>
+    <th>'.$total_CA_restant.' €</th>
 ';
 
 // Fin de la ligne des totaux
 $output .= '
-        <th></th>
     </tr>
 ';
 
