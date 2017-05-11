@@ -17,7 +17,7 @@ catch (Exception $e)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ACTEMEDIA - Accueil</title>
+        <title>ACTEMEDIA - Formulaires</title>
         <link rel="icon" type="image/png" href="assets/ico/ms-icon-150x150.png">
 
         <!-- CSS -->
@@ -52,7 +52,7 @@ catch (Exception $e)
                             <ul class="dropdown-menu">
                                 <li>
                                     <a  id="" class="hidden-xs"  href="monthly_report.php">Rapport Mensuel</a>
-                                    <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
+                                    <a  id="" class="visible-xs" href="monthly_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
                                     <a  id="" class="hidden-xs"  href="annual_report.php">Rapport Annuel</a>
                                     <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
                                 </li>
@@ -140,19 +140,36 @@ catch (Exception $e)
                                     <form role="form"  id="add_imput">
                                         <div class="form-group">
                                             <label style="color: white; margin-bottom: 30px;">Ajout d'imputation</label><br>
+
+                                            <div class='input-group date' id='datetimepicker10'>
+                                                <input  class="form-control" size="16" type="text" id="imput_date" readonly required placeholder="Sélectionnez le mois d'imputation"/>
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+
+                                            <div style="display: none;" id="actual_imputs">
+                                                <label style="color: white; margin-bottom: 30px;">Voici les imputations du collaborateur pour le mois choisi :</label><br>
+
+
+                                            </div>
+
                                             <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet:</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
                                             or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select nom from projet");
+                                                $result = $conn->query("select * from projet");
 
                                                 while ($row = $result->fetch_assoc()) {
 
                                                               unset($nom);
+                                                              unset($code);
                                                               $nom = $row['nom'];
-                                                              echo '<option value="'.$nom.'">'.$nom.'</option>';
+                                                              $code = $row['code'];
+
+                                                              echo '<option value="'.$code.'">'.$nom.'</option>';
 
                                             }
                                             ?> </select>
@@ -162,13 +179,16 @@ catch (Exception $e)
                                             $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
                                             or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select nom from collaborateurs");
+                                                $result = $conn->query("select * from collaborateurs");
 
                                                 while ($row = $result->fetch_assoc()) {
 
+                                                              unset($code);
                                                               unset($nom);
+                                                              $code = $row['code'];
                                                               $nom = $row['nom'];
-                                                              echo '<option value="'.$nom.'">'.$nom.'</option>';
+                                                              echo '<option value="'.$code.'">'.$nom.'</option>';
+                                                              
 
                                             }
                                             ?> </select>
@@ -206,6 +226,14 @@ catch (Exception $e)
 			minView: 2,
 			forceParse: 0
    		 });
+        $('#datetimepicker10').datetimepicker({
+            language : 'fr',
+            todayBtn1 : 1,
+            startView: 3,
+            minView: 3,
+            maxView: 4,
+            format: 'yyyy-mm'
+        });
         </script>
 
     </body>

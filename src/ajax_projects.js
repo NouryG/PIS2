@@ -73,11 +73,12 @@ $("#add_collab").submit(function(event){
 
 $("#add_imput").submit(function(event){
 	event.preventDefault();
-	var code_projet = $("#code_projet_1 option:selected").text();
-	var code_collab = $("#code_collab_1 option:selected").text();
+	var imput_date = $("#imput_date").val();
+	var code_projet = $("#code_projet_1 option:selected").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
 	var worked_days = $("#worked_days").val();
-	var dataString = 'code_projet='+ code_projet + '&code_collab='+ code_collab + '&jours=' + worked_days;
-	if(code_projet==''||code_collab==''||worked_days=='')
+	var dataString = 'date_imput=' + imput_date +'-01' + '&code_projet='+ code_projet + '&code_collab='+ code_collab + '&jours=' + worked_days;
+	if(imput_date=='' || code_projet==''||code_collab==''||worked_days=='')
 		{
 		alert("Merci de remplir tous les champs");
 		}
