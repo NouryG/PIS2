@@ -101,3 +101,41 @@ $("#add_imput").submit(function(event){
 		}
 	return false;
 });
+
+$("#imput_date").change(function() {
+	var imput_date = $("#imput_date").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
+	var dataString = 'date_imput=' + imput_date +'-01' +'&code_collab=' + code_collab;
+	$.ajax({
+		type:"POST",
+		url:"bdd_display_imput.php",
+		data: dataString,
+		cache: false,
+		success: function(data){
+			$("#actual_imputs").html(data);
+			$("#actual_imputs").show();
+		}
+
+	});
+	return false;
+});
+
+$("#code_collab_1").change(function() {
+	var imput_date = $("#imput_date").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
+	var dataString = 'date_imput=' + imput_date +'-01' +'&code_collab=' + code_collab;
+	$.ajax({
+		type:"POST",
+		url:"bdd_display_imput.php",
+		data: dataString,
+		cache: false,
+		success: function(data){
+			$("#actual_imputs").html(data);
+			$("#actual_imputs").show();
+		}
+
+	});
+	return false;
+});
+
+
