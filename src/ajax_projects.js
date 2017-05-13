@@ -7,9 +7,10 @@ $("#add_project").submit(function(event){
 	var client = $("#project_client").val();
 	var date = $("#project_date").val();
 	var sold_days = $("#project_sold_days").val();
+	var project_price = $("#project_price").val();
 	var raf_reel = $("#project_raf").val();
-	var dataString = 'nom='+ name + '&code='+ code + '&client='+ client + '&date_debut='+ date + '&jours_vendus='+ sold_days + '&RAF_reel=' + raf_reel;
-	if(name==''||code==''||client==''||date==''||sold_days=='')
+	var dataString = 'nom='+ name + '&code='+ code + '&client='+ client + '&date_debut='+ date + '&jours_vendus='+ sold_days + '&CA_vendu=' + project_price + '&RAF_reel=' + raf_reel;
+	if(name==''||code==''||client==''||date==''||sold_days=='' ||project_price=='')
 		{
 		alert("Merci de remplir tous les champs");
 		}
@@ -72,11 +73,12 @@ $("#add_collab").submit(function(event){
 
 $("#add_imput").submit(function(event){
 	event.preventDefault();
-	var code_projet = $("#code_projet_1 option:selected").text();
-	var code_collab = $("#code_collab_1 option:selected").text();
+	var imput_date = $("#imput_date").val();
+	var code_projet = $("#code_projet_1 option:selected").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
 	var worked_days = $("#worked_days").val();
-	var dataString = 'code_projet='+ code_projet + '&code_collab='+ code_collab + '&jours=' + worked_days;
-	if(code_projet==''||code_collab==''||worked_days=='')
+	var dataString = 'date_imput=' + imput_date +'-01' + '&code_projet='+ code_projet + '&code_collab='+ code_collab + '&jours=' + worked_days;
+	if(imput_date=='' || code_projet==''||code_collab==''||worked_days=='')
 		{
 		alert("Merci de remplir tous les champs");
 		}
@@ -99,3 +101,41 @@ $("#add_imput").submit(function(event){
 		}
 	return false;
 });
+
+$("#imput_date").change(function() {
+	var imput_date = $("#imput_date").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
+	var dataString = 'date_imput=' + imput_date +'-01' +'&code_collab=' + code_collab;
+	$.ajax({
+		type:"POST",
+		url:"bdd_display_imput.php",
+		data: dataString,
+		cache: false,
+		success: function(data){
+			$("#actual_imputs").html(data);
+			$("#actual_imputs").show();
+		}
+
+	});
+	return false;
+});
+
+$("#code_collab_1").change(function() {
+	var imput_date = $("#imput_date").val();
+	var code_collab = $("#code_collab_1 option:selected").val();
+	var dataString = 'date_imput=' + imput_date +'-01' +'&code_collab=' + code_collab;
+	$.ajax({
+		type:"POST",
+		url:"bdd_display_imput.php",
+		data: dataString,
+		cache: false,
+		success: function(data){
+			$("#actual_imputs").html(data);
+			$("#actual_imputs").show();
+		}
+
+	});
+	return false;
+});
+
+

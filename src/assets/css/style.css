@@ -79,7 +79,7 @@ body
 
 /* GRAND MENU */
 
-@media (min-width:768px){
+@media (min-width:991px){
 
 
 
@@ -163,8 +163,6 @@ body
 /****** Responsive table ******/
 
 caption {
-    caption-side:top;
+    caption-side: top;
     text-align: center;
 }
-
-
