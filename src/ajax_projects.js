@@ -23,13 +23,13 @@ $("#add_project").submit(function(event){
 			data: dataString,
 			cache: false,
 			success: function(result){
-				$("#project_result").html('Ajout réussi'); 
+				$("#project_result").html('Ajout réussi');
               	$("#project_result").addClass("alert alert-success");
               	$("#project_result").fadeTo(2000, 500).slideUp(500, function(){
     			$("#project_result").slideUp(500);
 				});
               	$('#add_project').trigger("reset");}
-              	
+
 			});
 
 		}
@@ -60,7 +60,7 @@ $("#add_collab").submit(function(event){
 			data: dataString,
 			cache: false,
 			success: function(result){
-				$("#collab_result").html('Ajout réussi'); 
+				$("#collab_result").html('Ajout réussi');
               	$("#collab_result").addClass("alert alert-success");
               	$("#collab_result").fadeTo(2000, 500).slideUp(500, function(){
     			$("#collab_result").slideUp(500);
@@ -91,7 +91,7 @@ $("#add_imput").submit(function(event){
 			data: dataString,
 			cache: false,
 			success: function(result){
-				$("#collab_result").html('Ajout réussi'); 
+				$("#collab_result").html('Ajout réussi');
               	$("#collab_result").addClass("alert alert-success");
               	$("#collab_result").fadeTo(2000, 500).slideUp(500, function(){
     			$("#collab_result").slideUp(500);
@@ -138,4 +138,38 @@ $("#code_collab_1").change(function() {
 	return false;
 });
 
+//Edition
+function edit_data(id, text, column_name)
+{
+		 $.ajax({
+					url:"bdd_edit_imput.php",
+					method:"POST",
+					data:{id:id, text:text, column_name:column_name},
+					dataType:"text",
 
+		 });
+}
+
+//Pour l'edition des jours
+$(document).on('blur', '.jours', function(){
+		 var id = $(this).data("id1");
+		 var code = $(this).text().toUpperCase();
+		 edit_data(id, code, "jours");
+		 //alert(id);
+});
+//Suppression Imputation
+$(document).on('click', '.btn_delete', function(){
+		 var id=$(this).data("id2");
+		 if(confirm("Etes-vous sûr de vouloir supprimer cette imputation?"))
+		 {
+					$.ajax({
+							 url:"bdd_delete_imput.php",
+							 method:"POST",
+							 data:{id:id},
+							 dataType:"text",
+							 success:function(data){
+								 //Afficher de nouveau le tableau
+							 }
+					});
+		 }
+});
