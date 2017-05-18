@@ -58,12 +58,24 @@
                 </div>
             </div>
         </nav>
+        <br><br><br><br>
+         <div class="row">
+                        <div class="col-sm-4 form-box col-sm-offset-2" id="forms" >
+                                <div >
+                                    <form  role="form" id="select_month">
+                                        <div class='input-group date' id='datetimepicker10'>
+                                            <input  class="form-control" size="16" type="text" id="chosen_month" readonly required placeholder="Sélectionnez le mois :"/>
+                                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
         <!-- Content -->
         <div class="container">
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <div class="table-responsive">
@@ -73,22 +85,35 @@
       </body>
  </html>
 
+<!-- Scripts Javascript -->
+        <script src="assets/js/bootstrap-datetimepicker.js"></script>
+        <script src="assets/js/bootstrap-datetimepicker.fr.js"></script>
+        <script type="text/javascript">
 
- <script>
- $(document).ready(function(){
+ $('#datetimepicker10').datetimepicker({
+            language : 'fr',
+            todayBtn1 : 1,
+            startView: 3,
+            minView: 3,
+            maxView: 4,
+            autoclose: 1,
+            format: 'yyyy-mm'
+        });
 
-      // Affichage des codes collaborateurs
-      function fetch_data()
-      {
-           $.ajax({
-                url:"select_monthly_report.php",
-                method:"POST",
-                success:function(data){
-                     $('#live_data').html(data);
-                }
-           });
-      }
-      fetch_data();
+ $("#chosen_month").change(function() {
+    var chosen_month = $("#chosen_month").val();
+    var dataString = 'chosen_month=' + chosen_month +'-01';
+    $.ajax({
+        type:"POST",
+        url:"select_monthly_report.php",
+        data: dataString,
+        cache: false,
+        success: function(data){
+        }
 
- });
+    });
+    return false;
+});
+
+
  </script>
