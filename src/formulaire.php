@@ -153,45 +153,41 @@ catch (Exception $e)
 
                                             <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur : </label>
                                             <select class="form-control" id="code_collab_1" required>
-                                            <?php
-                                            $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
-                                            or die ('Cannot connect to db');
+                                                <?php
+                                                $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
+                                                or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select * from collaborateurs");
+                                                    $result = $conn->query("select * from collaborateurs");
 
-                                                while ($row = $result->fetch_assoc()) {
-
-                                                              unset($code);
-                                                              unset($nom);
-                                                              $code = $row['code'];
-                                                              $nom = $row['nom'];
-                                                              echo '<option value="'.$code.'">'.$nom.'</option>';
-                                                              
-
-                                            }
-                                            ?> </select>
+                                                    while ($row = $result->fetch_assoc()) {
+                                                                  unset($code);
+                                                                  unset($nom);
+                                                                  $code = $row['code'];
+                                                                  $nom = $row['nom'];
+                                                                  echo '<option value="'.$code.'">'.$nom.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
 
                                             <div style="display: none;" id="actual_imputs"></div>
 
                                             <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet :</label>
                                             <select class="form-control" id="code_projet_1" required>
-                                            <?php
-                                            $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
-                                            or die ('Cannot connect to db');
+                                                <?php
+                                                $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
+                                                or die ('Cannot connect to db');
 
-                                                $result = $conn->query("select * from projet");
+                                                    $result = $conn->query("select * from projet");
 
-                                                while ($row = $result->fetch_assoc()) {
-
-                                                              unset($nom);
-                                                              unset($code);
-                                                              $nom = $row['nom'];
-                                                              $code = $row['code'];
-
-                                                              echo '<option value="'.$code.'">'.$nom.'</option>';
-
-                                            }
-                                            ?> </select>
+                                                    while ($row = $result->fetch_assoc()) {
+                                                                  unset($nom);
+                                                                  unset($code);
+                                                                  $nom = $row['nom'];
+                                                                  $code = $row['code'];
+                                                                  echo '<option value="'.$code.'">'.$nom.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
                                             <input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours travaillés" class="form-control" id="worked_days" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
