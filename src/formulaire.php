@@ -42,10 +42,13 @@ catch (Exception $e)
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="formulaire.php">Formulaires d'ajout</a>
+                            <a href="formulaire.php">Formulaires</a>
                         </li>
                         <li>
-                            <a href="bdd_display_collabs.php">Afficher les collaborateurs</a>
+                            <a href="bdd_display_collabs.php">Collaborateurs</a>
+                        </li>
+                        <li>
+                            <a href="bdd_display_projects.php">Projets</a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Afficher les rapports <span class="caret"></span></a>
@@ -116,7 +119,7 @@ catch (Exception $e)
                                 <div style="display: none;" id="collab_form">
                                     <form role="form"  id="add_collab">
                                         <div class="form-group">
-                                            <label style="color: white">Ajout de Collaborateur</label>
+                                            <label style="color: white">Ajout de collaborateur</label>
                                             <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" id="collab_name" required>
 				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="collab_surname" required>
                                             <input type="text" maxlength="3" placeholder="Entrez le code du collaborateur..." class="form-control" id="collab_code" required>
@@ -148,7 +151,7 @@ catch (Exception $e)
                                                 </span>
                                             </div>
 
-                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur: </label>
+                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur : </label>
                                             <select class="form-control" id="code_collab_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
@@ -170,7 +173,7 @@ catch (Exception $e)
 
                                             <div style="display: none;" id="actual_imputs"></div>
 
-                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet:</label>
+                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet :</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
@@ -189,7 +192,7 @@ catch (Exception $e)
 
                                             }
                                             ?> </select>
-                                            <input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="worked_days" required>
+                                            <input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours travaillés" class="form-control" id="worked_days" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>

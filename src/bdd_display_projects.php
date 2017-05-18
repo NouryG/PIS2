@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Projets</title>
+        <title>Table projets</title>
         <link rel="icon" type="image/png" href="assets/ico/ms-icon-150x150.png">
 
         <!-- CSS -->
@@ -40,12 +40,15 @@
                         <li>
                             <a href="bdd_display_collabs.php">Collaborateurs</a>
                         </li>
+                        <li>
+                            <a href="bdd_display_projects.php">Projets</a>
+                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Afficher les rapports <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a  id="" class="hidden-xs"  href="monthly_report.php">Rapport Mensuel</a>
-                                    <a  id="" class="visible-xs" href="monthly_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
+                                    <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
                                     <a  id="" class="hidden-xs"  href="annual_report.php">Rapport Annuel</a>
                                     <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
                                 </li>
@@ -85,95 +88,17 @@
       }
       fetch_data();
 
-      //Ajout = Ok
-      $(document).on('click', '#btn_add', function(){
-           var nom = $('#nom').text();
-           var prenom = $('#prenom').text();
-           var code = $('#code').text();
-           var societe = $('#societe').text();
-           var tj = $('#tj').text();
-           var actif = $('#actif').text();
-           if(nom == '')
-           {
-                alert("Entrer Nom");
-                return false;
-           }
-           if(prenom == '')
-           {
-                alert("Entrer Prenom");
-                return false;
-           }
-           $.ajax({
-                url:"bdd_add_collab.php",
-                method:"POST",
-                data:{nom:nom, prenom:prenom,code:code , societe:societe, TJ:tj, actif:actif},
-                dataType:"text",
-                success:function(data)
-                {
-                     //alert(data);
-                     fetch_data();
-                }
-           })
-      });
-
-      //Edition = Ok
-      function edit_data(id, text, column_name)
-      {
-           $.ajax({
-                url:"bdd_edit_collab.php",
-                method:"POST",
-                data:{id:id, text:text, column_name:column_name},
-                dataType:"text",
-                success:function(data){
-                     //alert(data);
-                }
-           });
-      }
-
-      //Pour l'édition de tous les champs
-      $(document).on('blur', '.code', function(){
-           var id = $(this).data("id1");
-           var code = $(this).text().toUpperCase();
-           edit_data(id, code, "code");
-      });
-      $(document).on('blur', '.nom', function(){
-           var id = $(this).data("id1");
-           var nom = $(this).text();
-           edit_data(id, nom, "nom");
-      });
-      $(document).on('blur', '.prenom', function(){
-           var id = $(this).data("id2");
-           var prenom = $(this).text();
-           edit_data(id,prenom, "prenom");
-      });
-      $(document).on('blur', '.societe', function(){
-           var id = $(this).data("id2");
-           var societe = $(this).text().toUpperCase();
-           edit_data(id,societe, "societe");
-      });
-      $(document).on('blur', '.tj', function(){
-           var id = $(this).data("id2");
-           var tj = $(this).text();
-           edit_data(id,tj, "tj");
-      });
-      $(document).on('blur', '.actif', function(){
-           var id = $(this).data("id2");
-           var actif = $(this).text();
-           edit_data(id,actif, "actif");
-      });
-
-      //Suppression = Ok
+      //Suppression
       $(document).on('click', '.btn_delete', function(){
-           var id=$(this).data("id3");
-           if(confirm("Etes-vous sûr de vouloir supprimer ce collaborateur?"))
+           var code=$(this).data("id3");
+           if(confirm("Etes-vous sûr de vouloir supprimer ce projet?"))
            {
                 $.ajax({
-                     url:"bdd_delete_collab.php",
+                     url:"bdd_delete_project.php",
                      method:"POST",
-                     data:{id:id},
+                     data:{code:code},
                      dataType:"text",
                      success:function(data){
-                          //alert("Ok");
                           fetch_data();
                      }
                 });

@@ -33,6 +33,20 @@ if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && 
         'CA_vendu' => $_POST['CA_vendu']
         ));
     }
+
+    // Ajout d'une imputation à 0 jours sur ce nouveau projet pour chaque collaborateur existant
+    $reponse = $bdd->query('SELECT * FROM collaborateurs'); // Sélection de tous les collaborateurs
+    while ($donnees = $reponse->fetch())
+    {
+        $req = $bdd->prepare('INSERT INTO imputation(date_imput, code_projet, code_collab, jours) VALUES(:date_imput, :code_projet, :code_collab, :jours)');
+        $req->execute(array(
+            'date_imput' => $_POST['date_debut'],
+            'code_projet' => $_POST['code'],
+            'code_collab' => $donnees['code'],
+            'jours' => 0
+        ));
+    }
+
 }
 
 else{

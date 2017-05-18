@@ -37,7 +37,7 @@ while ($donnees = $reponse->fetch())
                <td class="societe" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["societe"].'</td>
                <td class="tj" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["TJ"].'</td>
                <td class="actif" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["actif"].'</td>
-               <td><button type="button" name="delete_btn" data-id3="'.$donnees["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
+               <td><button type="button" name="delete_btn" data-id3="'.$donnees["code"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
           </tr>
      ';
 }

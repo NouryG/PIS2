@@ -8,7 +8,7 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && isset($_POST['societe']) && isset($_POST['TJ'])){
+if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && isset($_POST['societe']) && isset($_POST['TJ']) && isset($_POST['actif'])){
 
     // Création du collaborateur
 	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, code, societe, TJ, actif) VALUES(:nom, :prenom, :code, :societe, :TJ, :actif)');
@@ -28,12 +28,11 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && 
         // Création d'une imputation nulle pour chaque projet
     while ($donnees = $selectprojects->fetch())
     {
-        $code = $donnees['code'];
         $req = $bdd->prepare('INSERT INTO imputation(code_projet, code_collab, jours) VALUES(:code_projet, :code_collab, :jours)');
         $req->execute(array(
-        'code_projet' => $code,
-        'code_collab' => $_POST['code'],
-        'jours' => 0
+            'code_projet' => $donnees['code'],
+            'code_collab' => $_POST['code'],
+            'jours' => 0
         ));
     }
 }
