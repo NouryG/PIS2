@@ -25,7 +25,7 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && 
         //Sélection de tous les projets
     $selectprojects = $bdd->query('SELECT * FROM projet');
 
-        // Création d'une imputation nulle pour chaque projet
+    // Création d'une imputation nulle pour chaque projet
     while ($donnees = $selectprojects->fetch())
     {
         $code = $donnees['code'];

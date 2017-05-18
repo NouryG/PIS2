@@ -116,7 +116,7 @@ catch (Exception $e)
                                 <div style="display: none;" id="collab_form">
                                     <form role="form"  id="add_collab">
                                         <div class="form-group">
-                                            <label style="color: white">Ajout de Collaborateur</label>
+                                            <label style="color: white">Ajout de collaborateur</label>
                                             <input type="text" placeholder="Entrez le nom du collaborateur..." class="form-control" id="collab_name" required>
 				                        	<input type="text"  placeholder="Entrez le prénom du collaborateur..." class="form-control" id="collab_surname" required>
                                             <input type="text" maxlength="3" placeholder="Entrez le code du collaborateur..." class="form-control" id="collab_code" required>
@@ -148,7 +148,7 @@ catch (Exception $e)
                                                 </span>
                                             </div>
 
-                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur: </label>
+                                            <label for="code_collab_1" style="color: white;font-weight:200;">Sélectionner le collaborateur : </label>
                                             <select class="form-control" id="code_collab_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
@@ -170,7 +170,7 @@ catch (Exception $e)
 
                                             <div style="display: none;" id="actual_imputs"></div>
 
-                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet:</label>
+                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet :</label>
                                             <select class="form-control" id="code_projet_1" required>
                                             <?php
                                             $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 
@@ -189,7 +189,7 @@ catch (Exception $e)
 
                                             }
                                             ?> </select>
-                                            <input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours travaillés..." class="form-control" id="worked_days" required>
+                                            <input pattern='[0-9]{10}' type="number" placeholder="Entrez le nombre de jours travaillés" class="form-control" id="worked_days" required>
                                         </div>
                                     <button id="submit" type="submit" class="btn">Ajouter</button>
                                         </div>
