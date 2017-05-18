@@ -1,12 +1,30 @@
 <?php
-try
-{
-  $bdd = new PDO('mysql:host=localhost;dbname=ACTEMEDIA;charset=utf8', 'root', 'root');
+$conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
+                                                or die ('Cannot connect to db');
+$chosen_month=$_POST['chosen_month'];
+$result = $conn->query("SELECT * from imputation WHERE date_imput LIKE '$chosen_month'");
+
+if ($result->num_rows == 0) {
+
+?>
+
+<label style=" margin-bottom: 30px;">Le mois séléctionné n'a pas d'imputation.</label><br>
+
+<?php
+
 }
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
+else{
+
+?>
+
+<label style=" margin-bottom: 30px;">Voici les imputations pour le mois choisi :</label><br>
+
+<?php
+
 }
+
+/*
+
 
 // Sélection des collaborateurs AMA
 $reponse1 = $bdd->query('SELECT *
@@ -158,4 +176,9 @@ $output .= '
       </table>
       </div>';
 echo $output;
-?>
+
+*/ ?>
+
+
+
+

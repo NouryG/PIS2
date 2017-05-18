@@ -70,6 +70,7 @@
                                             </span>
                                         </div>
                                     </form>
+                                    <div style="display: none;" id="report"></div>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +87,7 @@
  </html>
 
 <!-- Scripts Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.js"></script>
         <script src="assets/js/bootstrap-datetimepicker.fr.js"></script>
         <script type="text/javascript">
@@ -109,6 +111,9 @@
         data: dataString,
         cache: false,
         success: function(data){
+
+            $("#report").html(data);
+            $("#report").show();
         }
 
     });
