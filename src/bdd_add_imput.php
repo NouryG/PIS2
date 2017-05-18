@@ -40,6 +40,6 @@ if (isset($_POST['date_imput']) && isset($_POST['code_projet']) && isset($_POST[
 }
 
 else {
-	echo "L'ajout n'a pas abouti..";
+	echo "L'ajout n'a pas abouti...";
 }
 ?>
