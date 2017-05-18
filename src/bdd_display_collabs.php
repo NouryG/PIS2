@@ -38,7 +38,10 @@
                             <a href="formulaire.php">Formulaires</a>
                         </li>
                         <li>
-                            <a href="bdd_display_collabs.php">Afficher collaborateurs</a>
+                            <a href="bdd_display_collabs.php">Collaborateurs</a>
+                        </li>
+                        <li>
+                            <a href="bdd_display_projects.php">Projets</a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Afficher les rapports <span class="caret"></span></a>
@@ -85,7 +88,7 @@
       }
       fetch_data();
 
-      //Ajout = Ok
+      //Ajout
       $(document).on('click', '#btn_add', function(){
            var nom = $('#nom').text();
            var prenom = $('#prenom').text();
@@ -116,7 +119,7 @@
            })
       });
 
-      //Edition = Ok
+      //Edition
       function edit_data(id, text, column_name)
       {
            $.ajax({
@@ -162,18 +165,17 @@
            edit_data(id,actif, "actif");
       });
 
-      //Suppression = Ok
+      //Suppression
       $(document).on('click', '.btn_delete', function(){
-           var id=$(this).data("id3");
+           var code=$(this).data("id3");
            if(confirm("Etes-vous sûr de vouloir supprimer ce collaborateur?"))
            {
                 $.ajax({
                      url:"bdd_delete_collab.php",
                      method:"POST",
-                     data:{id:id},
+                     data:{code:code},
                      dataType:"text",
                      success:function(data){
-                          //alert("Ok");
                           fetch_data();
                      }
                 });

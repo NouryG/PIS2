@@ -38,7 +38,10 @@
                             <a href="formulaire.php">Formulaires</a>
                         </li>
                         <li>
-                            <a href="bdd_display_collabs.php">Afficher collaborateurs</a>
+                            <a href="bdd_display_collabs.php">Collaborateurs</a>
+                        </li>
+                        <li>
+                            <a href="bdd_display_projects.php">Projets</a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Afficher les rapports <span class="caret"></span></a>
