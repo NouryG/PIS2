@@ -1,10 +1,18 @@
 <?php
-$conn = new mysqli('localhost', 'root', 'root', 'ACTEMEDIA') 
-                                                or die ('Cannot connect to db');
-$chosen_month=$_POST['chosen_month'];
-$result = $conn->query("SELECT * from imputation WHERE date_imput LIKE '$chosen_month'");
 
-if ($result->num_rows == 0) {
+try
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=ACTEMEDIA;charset=utf8', 'root', 'root');
+}
+catch(Exception $e)
+{
+        die('Erreur : '.$e->getMessage());
+}
+
+$chosen_month=$_POST['chosen_month'];
+$result = $bdd->query("SELECT * from imputation WHERE date_imput LIKE '$chosen_month'");
+
+if ($result->rowCount() == 0) {
 
 ?>
 
@@ -13,6 +21,7 @@ if ($result->num_rows == 0) {
 <?php
 
 }
+
 else{
 
 ?>
@@ -20,11 +29,6 @@ else{
 <label style=" margin-bottom: 30px;">Voici les imputations pour le mois choisi :</label><br>
 
 <?php
-
-}
-
-/*
-
 
 // Sélection des collaborateurs AMA
 $reponse1 = $bdd->query('SELECT *
@@ -34,8 +38,8 @@ $reponse1 = $bdd->query('SELECT *
 
 $output = '
       <div class="table-responsive">
-           <table class="table table-bordered">
-           <thead>
+          <table class="table table-bordered">
+          <thead>
              <tr class="bg-primary">
              <td style="background-color: #FAFAFA;"></td>';
 
@@ -44,7 +48,7 @@ $output = '
 while ($donnees = $reponse1->fetch())
 {
      $output .= '
-          <td style="background-color: lightgrey;">'.$donnees["code"].'</th>
+          <th style="background-color: lightgrey;">'.$donnees["code"].'</th>
      ';
 }
 
@@ -61,18 +65,16 @@ $reponse2 = $bdd->query('SELECT *
 while ($donnees = $reponse2->fetch())
 {
      $output .= '
-          <td style="background-color: lightgrey;">'.$donnees["code"].'</th>
+          <th style="background-color: lightgrey;">'.$donnees["code"].'</th>
      ';
 }
 
 $output .= '
       <th style="background-color: #A4A4A4;">EXT</th>
       <th style="background-color: #848484;">TOT</th>
-      </tr>
-      </thead>
-      ';
-
-// Selectionner tous les projets, les parcourir, et pour chaque projet, créer 2 valeurs tampons = somme et afficher les jours dans l'ordre
+    </tr>
+</thead>
+';
 
 // Sélection des projets
 $reponse3 = $bdd->query('SELECT *
@@ -94,10 +96,12 @@ while ($donnees = $reponse3->fetch()) {
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
+                        AND date_imput LIKE :chosen_month
                         AND societe="AMA"
                         AND actif="1"');
     $req->execute(array(
     'code_projet' => $code,
+    'chosen_month' => $chosen_month,
     ));
 
     while ($donnees2 = $req->fetch()) {
@@ -112,10 +116,12 @@ while ($donnees = $reponse3->fetch()) {
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
+                        AND date_imput LIKE :chosen_month
                         AND societe="AMA"
                         AND actif="1"');
     $AMA->execute(array(
     'code_projet' => $code,
+    'chosen_month' => $chosen_month,
     ));
 
     // Affichage du total AMA
@@ -129,10 +135,12 @@ while ($donnees = $reponse3->fetch()) {
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
+                        AND date_imput LIKE :chosen_month
                         AND societe <> "AMA"
                         AND actif="1"');
     $req->execute(array(
     'code_projet' => $code,
+    'chosen_month' => $chosen_month,
     ));
 
     while ($donnees2 = $req->fetch()) {
@@ -147,10 +155,12 @@ while ($donnees = $reponse3->fetch()) {
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND code_projet LIKE :code_projet
+                        AND date_imput LIKE :chosen_month
                         AND societe <> "AMA"
                         AND actif="1"');
     $EXT->execute(array(
     'code_projet' => $code,
+    'chosen_month' => $chosen_month,
     ));
 
     // Affichage du total externe
@@ -177,8 +187,6 @@ $output .= '
       </div>';
 echo $output;
 
-*/ ?>
+}
 
-
-
-
+?>

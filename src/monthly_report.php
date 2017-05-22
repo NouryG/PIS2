@@ -58,32 +58,36 @@
                 </div>
             </div>
         </nav>
-        <br><br><br><br>
-         <div class="row">
-                        <div class="col-sm-4 form-box col-sm-offset-2" id="forms" >
-                                <div >
-                                    <form  role="form" id="select_month">
-                                        <div class='input-group date' id='datetimepicker10'>
-                                            <input  class="form-control" size="16" type="text" id="chosen_month" readonly required placeholder="Sélectionnez le mois :"/>
-                                            <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </form>
-                                    <div style="display: none;" id="report"></div>
-                                </div>
-                            </div>
-                        </div>
 
         <!-- Content -->
+
+        <br><br><br><br>
+        <div class="row">
+            <div class="col-sm-4 form-box col-sm-offset-4" id="forms" >
+                <div>
+                    <form role="form" id="select_month">
+                        <div class='input-group date' id='datetimepicker10'>
+                            <input  class="form-control" size="16" type="text" id="chosen_month" readonly required placeholder="Sélectionnez le mois :"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </form>
+                <div style="text-align: center;" id="report"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
-            <br />
-            <br />
+            <br>
+            <br>
             <div class="table-responsive">
                 <div id="live_data"></div>
             </div>
         </div>
+
       </body>
+
  </html>
 
 <!-- Scripts Javascript -->
