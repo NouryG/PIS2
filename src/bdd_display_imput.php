@@ -21,9 +21,9 @@ if($result->num_rows == 0){
 <table class="table table-striped table-bordered">
   <thead>
       <tr>
-        <th>Code Projet</th>
-        <th>Jours travaillés</th>
-        <th>Supprimer</th>
+        <th style="text-align: center;">Code Projet</th>
+        <th style="text-align: center;">Jours travaillés</th>
+        <th style="text-align: center;">Supprimer</th>
       </tr>
   </thead>
 
