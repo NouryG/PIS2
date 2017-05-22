@@ -4,7 +4,7 @@
   $conn = new mysqli('localhost', 'root', 'root', 'actemedia') or die ('Cannot connect to db');
   $date_imput=$_POST['date_imput'];
   $code_collab=$_POST['code_collab'];
-  $result = $conn->query("select * from imputation WHERE date_imput LIKE '$date_imput' AND code_collab LIKE '$code_collab'");
+  $result = $conn->query("select * from imputation WHERE date_imput LIKE '$date_imput' AND code_collab LIKE '$code_collab' AND jours <> 0");
 
 if($result->num_rows == 0){
 
