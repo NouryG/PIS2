@@ -22,7 +22,7 @@ if($result->num_rows == 0){
   <thead>
       <tr>
         <th style="text-align: center;">Code Projet</th>
-        <th style="text-align: center;">Jours travaillés</th>
+        <th style="text-align: center;">Jours travaillés (modifiable)</th>
         <th style="text-align: center;">Supprimer</th>
       </tr>
   </thead>
