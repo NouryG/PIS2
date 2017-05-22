@@ -17,17 +17,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `client`
---
-
-CREATE TABLE `client` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `collaborateurs`
 --
 
@@ -110,12 +99,6 @@ INSERT INTO `projet` (`id`, `nom`, `code`, `client`, `date_debut`, `jours_vendus
 --
 
 --
--- Index pour la table `client`
---
-ALTER TABLE `client`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Index pour la table `collaborateurs`
 --
 ALTER TABLE `collaborateurs`
@@ -137,11 +120,6 @@ ALTER TABLE `projet`
 -- AUTO_INCREMENT pour les tables exportées
 --
 
---
--- AUTO_INCREMENT pour la table `client`
---
-ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `collaborateurs`
 --
