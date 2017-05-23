@@ -63,7 +63,7 @@
 
         <br><br><br><br>
         <div class="row">
-            <div class="col-sm-4 form-box col-sm-offset-4" id="forms" >
+            <div class="col-sm-10 form-box col-sm-offset-1" id="forms" >
                 <div>
                     <form role="form" id="select_month">
                         <div class='input-group date' id='datetimepicker10'>
@@ -81,9 +81,11 @@
         <div class="container">
             <br>
             <br>
-            <div class="table-responsive">
-                <div id="live_data"></div>
-            </div>
+            <div class="col-sm-8">
+                <div class="table-responsive">
+                    <div id="live_data"></div>
+                </div>
+            </div>    
         </div>
 
       </body>
