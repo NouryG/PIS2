@@ -49,7 +49,7 @@ while ($donnees = $reponse->fetch())
             <td>'.$donnees["code"].'</td>
             <td>'.$donnees["nom"].'</td>
             <td>'.$donnees["client"].'</td>
-            <td>'.$donnees["CA_vendu"].' €</td>
+            <td>'.number_format($donnees["CA_vendu"], 0, ",", " ").' €</td>
     ';
 
     // Calcul du produit AMA pour le projet sélectionné
@@ -73,7 +73,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du produit AMA
     $output .= '
-        <td>'.$prod_AMA.' €</td>
+        <td>'.number_format($prod_AMA, 0, ",", " ").' €</td>
     ';
 
     // Calcul du produit STT pour le projet sélectionné
@@ -97,7 +97,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du produit STT
     $output .= '
-        <td>'.$prod_STT.' €</td>
+        <td>'.number_format($prod_STT, 0, ",", " ").' €</td>
     ';
 
     // Affichage des jours vendus
@@ -111,7 +111,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du TJM vendu
     $output .= '
-               <td>'.$tjm.' €</td>
+               <td>'.number_format($tjm, 0, ",", " ").' €</td>
     ';
 
     // Calcul du RAF estimé
@@ -161,7 +161,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du TJ projet
     $output .= '
-        <td>'.$TJ_Projet.' €</td>
+        <td>'.number_format($TJ_Projet, 0, ",", " ").' €</td>
     ';
 
     // Calcul du CA restant
@@ -170,7 +170,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du CA restant
     $output .= '
-        <td>'.$CA_restant.' €</td>
+        <td>'.number_format($CA_restant, 0, ",", " ").' €</td>
         </tr>
     ';
 
@@ -190,17 +190,17 @@ $CA_vendu = $bdd->query('SELECT SUM(CA_vendu) AS somme_CA_vendu FROM projet');
 // Affichage du total commande
 $somme_CA = $CA_vendu->fetch();
 $output .= '
-    <th>'.$somme_CA["somme_CA_vendu"].' €</th>
+    <th>'.number_format($somme_CA["somme_CA_vendu"], 0, ",", " ").' €</th>
 ';
 
 // Total du produit AMA
 $output .= '
-    <td>'.$total_Produit_AMA.' €</td>
+    <th>'.number_format($total_Produit_AMA, 0, ",", " ").' €</th>
 ';
 
 // Total du produit AMA
 $output .= '
-    <td>'.$total_Produit_STT.' €</td>
+    <th>'.number_format($total_Produit_STT, 0, ",", " ").' €</th>
 ';
 
 // Somme des jours vendus
@@ -214,7 +214,7 @@ $output .= '
 
 // Affichage du total TJM vendu
 $output .= '
-    <th>'.$total_TJM_vendu.' €</th>
+    <th>'.number_format($total_TJM_vendu, 0, ",", " ").' €</th>
 ';
 
 // Affichage du total jours produits
@@ -240,8 +240,8 @@ $output .= '
 // Affichage total TJ projet et CA restant total
 $temp_TJ_projet = round($total_TJ_projet / $TJ_projet_count);
 $output .= '
-    <th>'.$temp_TJ_projet.' €</th>
-    <th>'.$total_CA_restant.' €</th>
+    <th>'.number_format($temp_TJ_projet, 0, ",", " ").' €</th>
+    <th>'.number_format($total_CA_restant, 0, ",", " ").' €</th>
 ';
 
 // Fin de la ligne des totaux
