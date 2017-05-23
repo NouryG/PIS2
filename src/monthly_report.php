@@ -63,7 +63,7 @@
 
         <br><br><br><br>
         <div class="row">
-            <div class="col-sm-10 form-box col-sm-offset-1" id="forms" >
+            <div class="col-sm-4 form-box col-sm-offset-4" id="forms" >
                 <div>
                     <form role="form" id="select_month">
                         <div class='input-group date' id='datetimepicker10'>
