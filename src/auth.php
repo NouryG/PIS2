@@ -1,3 +1,5 @@
+<?php $_SESSION['password']= "actemedia"; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

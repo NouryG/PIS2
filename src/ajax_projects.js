@@ -13,7 +13,12 @@ $("#login-form").submit(function(event){
             $("#login_result").slideUp(500);
             });
 		}
-	else {window.location.replace('accueil.php');}
+	else {$.ajax({
+			type: "POST",
+			url: "connexion.php",
+			data: 'mdp=actemedia'});
+
+		window.location.replace('accueil.php');}
 	return false;
 
 });

@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+if((!isset($_SESSION['password']) && $_SESSION['password'] != 'actemedia')){
+    header ("Location: auth.php");
+}
+
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=ACTEMEDIA;charset=utf8', 'root', 'root');
