@@ -73,19 +73,13 @@
                             </span>
                         </div>
                     </form>
-                <div style="text-align: center;" id="report"></div>
+                
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <br>
-            <br>
-            <div class="col-sm-8">
-                <div class="table-responsive">
-                    <div id="live_data"></div>
-                </div>
-            </div>    
+        <div class="col-sm-10 col-sm-offset-1">
+            <div style="text-align: center;" id="report"></div>  
         </div>
 
       </body>
