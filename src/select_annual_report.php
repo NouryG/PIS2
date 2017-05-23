@@ -12,45 +12,48 @@ catch(Exception $e)
 
 $reponse = $bdd->query('SELECT * FROM projet');
 $output = '
+<div class="col-sm-10 col-sm-offset-1"
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary">
-                    <th width="7%">Code</th>
-                    <th width="10%">Projet</th>
-                    <th width="10%">Client</th>
-                    <th width="10%">Commande</th>
-                    <th width="10%">Produit AMA</th>
-                    <th width="10%">Produit STT</th>
-                    <th width="7%">Jours vendus</th>
-                    <th width="10%">TJM vendu</th>
-                    <th width="7%">Jours produits</th>
-                    <th width="7%">RAF estimé</th>
-                    <th width="20%">RAF réel (0 par défaut)</th>
-                    <th width="10%">TJ projet</th>
-                    <th width=auto>CA restant</th>
+                    <th>Code</th>
+                    <th>Projet</th>
+                    <th>Client</th>
+                    <th>Commande</th>
+                    <th>Produit AMA</th>
+                    <th>Produit STT</th>
+                    <th>Jours vendus</th>
+                    <th>TJM vendu</th>
+                    <th>Jours produits</th>
+                    <th>RAF estimé</th>
+                    <th>RAF réel (0 par défaut)</th>
+                    <th>TJ projet</th>
+                    <th>CA restant</th>
                 </tr>
             </thead>';
 
+$total_Produit_AMA = 0; // Pour le total des jours produits AMA
+$total_Produit_STT = 0; // Pour le total des jours produits EXT
 $total_TJM_vendu = 0; // Pour le total TJM vendu
 $total_TJ_projet = 0; // Pour le total TJ projet
 $TJ_projet_count = 0;
 $total_CA_restant = 0; // Pour le total du CA restant
+
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
     $code = $donnees['code'];
     $output .= '
-        <tr>
+        <tr style="height: 50px;">
             <td>'.$donnees["code"].'</td>
             <td>'.$donnees["nom"].'</td>
             <td>'.$donnees["client"].'</td>
-            <td>'.$donnees["CA_vendu"].' €</td>
+            <td>'.number_format($donnees["CA_vendu"], 0, ",", " ").' €</td>
     ';
 
     // Calcul du produit AMA pour le projet sélectionné
     $prod_AMA = 0;
-    $total_Produit_AMA = 0; // Pour le total plus tard
     $collab_AMA = $bdd->prepare('SELECT *
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
@@ -70,12 +73,11 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du produit AMA
     $output .= '
-        <td>'.$prod_AMA.' €</td>
+        <td>'.number_format($prod_AMA, 0, ",", " ").' €</td>
     ';
 
     // Calcul du produit STT pour le projet sélectionné
     $prod_STT = 0;
-    $total_Produit_STT = 0; // Pour le total plus tard
     $collab_STT = $bdd->prepare('SELECT *
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
@@ -95,7 +97,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du produit STT
     $output .= '
-        <td>'.$prod_STT.' €</td>
+        <td>'.number_format($prod_STT, 0, ",", " ").' €</td>
     ';
 
     // Affichage des jours vendus
@@ -109,7 +111,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du TJM vendu
     $output .= '
-               <td>'.$tjm.' €</td>
+               <td>'.number_format($tjm, 0, ",", " ").' €</td>
     ';
 
     // Calcul du RAF estimé
@@ -159,7 +161,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du TJ projet
     $output .= '
-        <td>'.$TJ_Projet.' €</td>
+        <td>'.number_format($TJ_Projet, 0, ",", " ").' €</td>
     ';
 
     // Calcul du CA restant
@@ -168,7 +170,7 @@ while ($donnees = $reponse->fetch())
 
     // Affichage du CA restant
     $output .= '
-        <td>'.$CA_restant.' €</td>
+        <td>'.number_format($CA_restant, 0, ",", " ").' €</td>
         </tr>
     ';
 
@@ -188,17 +190,17 @@ $CA_vendu = $bdd->query('SELECT SUM(CA_vendu) AS somme_CA_vendu FROM projet');
 // Affichage du total commande
 $somme_CA = $CA_vendu->fetch();
 $output .= '
-    <th>'.$somme_CA["somme_CA_vendu"].' €</th>
+    <th>'.number_format($somme_CA["somme_CA_vendu"], 0, ",", " ").' €</th>
 ';
 
 // Total du produit AMA
 $output .= '
-    <td>'.$total_Produit_AMA.' €</td>
+    <th>'.number_format($total_Produit_AMA, 0, ",", " ").' €</th>
 ';
 
 // Total du produit AMA
 $output .= '
-    <td>'.$total_Produit_STT.' €</td>
+    <th>'.number_format($total_Produit_STT, 0, ",", " ").' €</th>
 ';
 
 // Somme des jours vendus
@@ -212,7 +214,7 @@ $output .= '
 
 // Affichage du total TJM vendu
 $output .= '
-    <th>'.$total_TJM_vendu.' €</th>
+    <th>'.number_format($total_TJM_vendu, 0, ",", " ").' €</th>
 ';
 
 // Affichage du total jours produits
@@ -238,8 +240,8 @@ $output .= '
 // Affichage total TJ projet et CA restant total
 $temp_TJ_projet = round($total_TJ_projet / $TJ_projet_count);
 $output .= '
-    <th>'.$temp_TJ_projet.' €</th>
-    <th>'.$total_CA_restant.' €</th>
+    <th>'.number_format($temp_TJ_projet, 0, ",", " ").' €</th>
+    <th>'.number_format($total_CA_restant, 0, ",", " ").' €</th>
 ';
 
 // Fin de la ligne des totaux
@@ -248,6 +250,8 @@ $output .= '
 ';
 
  $output .= '</table>
-      </div>';
+      </div>
+    </div>';
+
  echo $output;
  ?>

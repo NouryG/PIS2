@@ -41,12 +41,13 @@
                             	<p>Merci de saisir le mot de passe requis :</p>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form"  action="formulaire.php" method="post" class="login-form">
+			                    <form role="form" id="login-form" class="login-form">
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Password</label>
 			                        	<input type="password" name="form-password" placeholder="Entrez votre mot de passe" class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Connexion</button>
+                                    <center><div id="login_result"></div></center>
 			                    </form>
 		                    </div>
                         </div>
@@ -66,7 +67,6 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/scripts.js"></script>
-
-    </body>
+        <script src='ajax_projects.js'></script>
 
 </html>

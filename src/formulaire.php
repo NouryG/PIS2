@@ -171,7 +171,7 @@ catch (Exception $e)
 
                                             <div style="display: none;" id="actual_imputs"></div>
 
-                                            <label for="code_projet_1" style="color: white; font-weight:200;">Sélectionner le projet :</label>
+                                            <label for="code_projet_1" style="color: white; font-weight:200;">Pour ajouter une imputation, sélectionner le projet et entrez le nombre de jours travaillés :</label>
                                             <select class="form-control" id="code_projet_1" required>
                                                 <?php
                                                 $conn = new mysqli('localhost', 'root', 'root', 'actemedia') 

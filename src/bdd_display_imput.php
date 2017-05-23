@@ -4,7 +4,7 @@
   $conn = new mysqli('localhost', 'root', 'root', 'actemedia') or die ('Cannot connect to db');
   $date_imput=$_POST['date_imput'];
   $code_collab=$_POST['code_collab'];
-  $result = $conn->query("select * from imputation WHERE date_imput LIKE '$date_imput' AND code_collab LIKE '$code_collab'");
+  $result = $conn->query("select * from imputation WHERE date_imput LIKE '$date_imput' AND code_collab LIKE '$code_collab' AND jours <> 0");
 
 if($result->num_rows == 0){
 
@@ -22,7 +22,11 @@ if($result->num_rows == 0){
   <thead style="background-color: #ECECEC; color: #232323;">
       <tr>
         <th style="text-align: center;">Code Projet</th>
+<<<<<<< HEAD
         <th style="text-align: center;">Imputations</th>
+=======
+        <th style="text-align: center;">Jours travaillés (modifiable)</th>
+>>>>>>> refs/remotes/origin/master
         <th style="text-align: center;">Supprimer</th>
       </tr>
   </thead>

@@ -1,4 +1,22 @@
+$("#login-form").submit(function(event){
+	event.preventDefault();
+	var password = $("#form-password").val();
+	if(password=='')
+		{
+		alert("Merci de remplir tous les champs");
+		}
+	else if(password!='actemedia')
+		{
+            $("#login_result").html('Mauvais mot de passe !');
+            $("#login_result").addClass("alert alert-fail");
+            $("#login_result").fadeTo(2000, 500).slideUp(500, function(){
+            $("#login_result").slideUp(500);
+            });
+		}
+	else {window.location.replace('accueil.php');}
+	return false;
 
+});
 
 $("#add_project").submit(function(event){
 	event.preventDefault();
@@ -119,6 +137,7 @@ $("#imput_date").change(function() {
 	});
 	return false;
 });
+
 
 $("#code_collab_1").change(function() {
 	var imput_date = $("#imput_date").val();

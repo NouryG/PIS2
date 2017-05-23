@@ -10,13 +10,15 @@ catch(Exception $e)
 
 if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && isset($_POST['societe']) && isset($_POST['TJ']) && isset($_POST['actif'])){
 
+    $code_collab = strtoupper($_POST['code']);
+    $societe = strtoupper($_POST['societe']);
     // Création du collaborateur
 	$req = $bdd->prepare('INSERT INTO collaborateurs(nom, prenom, code, societe, TJ, actif) VALUES(:nom, :prenom, :code, :societe, :TJ, :actif)');
 	$req->execute(array(
     'nom' => $_POST['nom'],
     'prenom' => $_POST['prenom'],
-    'code' => $_POST['code'],
-    'societe' => $_POST['societe'],
+    'code' => $code_collab,
+    'societe' => $societe,
     'TJ' => $_POST['TJ'],
     'actif' => $_POST['actif']
     ));
@@ -31,7 +33,7 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && 
         $req = $bdd->prepare('INSERT INTO imputation(code_projet, code_collab, jours) VALUES(:code_projet, :code_collab, :jours)');
         $req->execute(array(
             'code_projet' => $donnees['code'],
-            'code_collab' => $_POST['code'],
+            'code_collab' => $code_collab,
             'jours' => 0
         ));
     }
