@@ -16,7 +16,7 @@ $output = '
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
-                <tr class="bg-primary">
+                <tr class="bg-primary" style="background-color: #2F93DB;">
                     <th>Code</th>
                     <th>Projet</th>
                     <th>Client</th>
@@ -178,7 +178,7 @@ while ($donnees = $reponse->fetch())
 
 // Affichage des totaux
 $output .= '
-    <tr class="bg-primary">
+    <tr class="bg-primary" style="background-color: #2F93DB;">
         <th>Totaux</th>
         <th></th>
         <th></th>

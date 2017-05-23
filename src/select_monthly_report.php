@@ -53,7 +53,7 @@ while ($donnees = $reponse1->fetch())
 }
 
 $output .= '
-      <th style="background-color: #A4A4A4;">AMA</th>';
+      <th style="background-color: #37ABFF;">AMA</th>';
 
 // Sélection des collaborateurs externes
 $reponse2 = $bdd->query('SELECT *
@@ -70,8 +70,8 @@ while ($donnees = $reponse2->fetch())
 }
 
 $output .= '
-      <th style="background-color: #A4A4A4;">EXT</th>
-      <th style="background-color: #848484;">TOT</th>
+      <th style="background-color: #37ABFF;">EXT</th>
+      <th style="background-color: #2F93DB;">TOT</th>
     </tr>
 </thead>
 ';

@@ -40,6 +40,6 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && 
 }
 
 else{
-	echo "L'ajout n'a pas abouti..";
+	echo "L'ajout n'a pas abouti...";
 }
 ?>

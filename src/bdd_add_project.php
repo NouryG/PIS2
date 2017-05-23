@@ -37,11 +37,13 @@ if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && 
 
     // Ajout d'une imputation à 0 jours sur ce nouveau projet pour chaque collaborateur existant
     $reponse = $bdd->query('SELECT * FROM collaborateurs'); // Sélection de tous les collaborateurs
+    $mois_debut_projet = substr($_POST['date_debut'], -10, 7) . '-01'; // Date de l'imputation : 1er jour du mois de début du projet
+
     while ($donnees = $reponse->fetch())
     {
         $req = $bdd->prepare('INSERT INTO imputation(date_imput, code_projet, code_collab, jours) VALUES(:date_imput, :code_projet, :code_collab, :jours)');
         $req->execute(array(
-            'date_imput' => $_POST['date_debut'],
+            'date_imput' => $mois_debut_projet,
             'code_projet' => $code_projet,
             'code_collab' => $donnees['code'],
             'jours' => 0
@@ -51,6 +53,6 @@ if( isset($_POST['nom']) && isset($_POST['code']) && isset($_POST['client']) && 
 }
 
 else{
-	echo "L'ajout n'a pas abouti..";
+	echo "L'ajout n'a pas abouti...";
 }
 ?>
