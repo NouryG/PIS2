@@ -48,12 +48,12 @@ $output = '
 while ($donnees = $reponse1->fetch())
 {
      $output .= '
-          <th style="background-color: lightgrey;">'.$donnees["code"].'</th>
+          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["code"].'</th>
      ';
 }
 
 $output .= '
-      <th style="background-color: #37ABFF;">AMA</th>';
+      <th style="background-color: #37ABFF; text-align: center;">AMA</th>';
 
 // Sélection des collaborateurs externes
 $reponse2 = $bdd->query('SELECT *
@@ -65,13 +65,13 @@ $reponse2 = $bdd->query('SELECT *
 while ($donnees = $reponse2->fetch())
 {
      $output .= '
-          <th style="background-color: lightgrey;">'.$donnees["code"].'</th>
+          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["code"].'</th>
      ';
 }
 
 $output .= '
-      <th style="background-color: #37ABFF;">EXT</th>
-      <th style="background-color: #2F93DB;">TOT</th>
+      <th style="background-color: #37ABFF; text-align: center;">EXT</th>
+      <th style="background-color: #2F93DB; text-align: center;">TOT</th>
     </tr>
 </thead>
 ';
@@ -88,7 +88,7 @@ while ($donnees = $reponse3->fetch()) {
     // Affichage du code projet
     $output .= '
         <tr>
-            <td>'.$code.'</td>
+            <td style="background-color: #E7E7E7; color: #2C2C2C;">'.$code.'</td>
     ';
 
     // Affichage des imputations AMA pour ce projet
@@ -127,7 +127,7 @@ while ($donnees = $reponse3->fetch()) {
     // Affichage du total AMA
     $somme_AMA = $AMA->fetch();
     $output .= '
-        <td>'.$somme_AMA["total_AMA"].'</td>
+        <td style="font-weight: bold">'.$somme_AMA["total_AMA"].'</td>
     ';
 
     // Affichage des imputations externes pour ce projet
@@ -166,13 +166,13 @@ while ($donnees = $reponse3->fetch()) {
     // Affichage du total externe
     $somme_EXT = $EXT->fetch();
     $output .= '
-        <td>'.$somme_EXT["total_EXT"].'</td>
+        <td style="font-weight: bold">'.$somme_EXT["total_EXT"].'</td>
     ';
 
     // Affichage du total complet
     $somme = $somme_AMA["total_AMA"] + $somme_EXT["total_EXT"];
     $output .= '
-        <td>'.$somme.'</td>
+        <td style="font-weight: bold">'.$somme.'</td>
     ';
 
 
