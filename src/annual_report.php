@@ -60,7 +60,6 @@
         </nav>
 
         <!-- Content -->
-        <div class="container">
             <br />
             <br />
             <br />
@@ -69,7 +68,6 @@
             <div class="table-responsive">
                 <div id="live_data"></div>
             </div>
-        </div>
       </body>
  </html>
 
