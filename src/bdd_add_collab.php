@@ -26,20 +26,22 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['code']) && 
     // Création des imputations par défaut (nulles) pour ce collaborateur
         //Sélection de tous les projets
     $selectprojects = $bdd->query('SELECT * FROM projet');
-
         // Création d'une imputation nulle pour chaque projet
     while ($donnees = $selectprojects->fetch())
     {
-        $req = $bdd->prepare('INSERT INTO imputation(code_projet, code_collab, jours) VALUES(:code_projet, :code_collab, :jours)');
+        $mois_debut_projet = substr($donnees['date_debut'], -10, 7) . '-01';
+
+        $req = $bdd->prepare('INSERT INTO imputation(code_projet, code_collab, jours, date_imput) VALUES(:code_projet, :code_collab, :jours, :date_imput)');
         $req->execute(array(
             'code_projet' => $donnees['code'],
             'code_collab' => $code_collab,
-            'jours' => 0
+            'jours' => 0,
+            'date_imput' => $mois_debut_projet
         ));
     }
 }
 
 else{
-	echo "L'ajout n'a pas abouti..";
+	echo "L'ajout n'a pas abouti...";
 }
 ?>

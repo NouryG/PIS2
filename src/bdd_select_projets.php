@@ -14,7 +14,7 @@ catch(Exception $e)
       <div class="table-responsive">
            <table class="table table-bordered">
            <thead>
-             <tr class="bg-primary">
+             <tr class="bg-primary" style="background-color: #2F93DB;">
                <th width="10%">Code</th>
                <th width="20%">Nom</th>
                <th width="20%">Client</th>

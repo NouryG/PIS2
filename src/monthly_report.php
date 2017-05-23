@@ -35,7 +35,7 @@ if((!isset($_SESSION['password']) && $_SESSION['password'] != 'actemedia')){
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>  
                     </button>
-                    <a class="navbar-brand" href="accueil.php">Acte Media - Suivi de Production</a>
+                    <a href="accueil.php"><img src="assets\ico\logo_horizontal_RVB_md.jpg"></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -60,13 +60,12 @@ if((!isset($_SESSION['password']) && $_SESSION['password'] != 'actemedia')){
                             </ul>
                         </li>
                     </ul>
-                </div>
+              </div>
             </div>
         </nav>
 
         <!-- Content -->
-
-        <br><br><br><br>
+        <br><br><br>
         <div class="row">
             <div class="col-sm-4 form-box col-sm-offset-4" id="forms" >
                 <div>

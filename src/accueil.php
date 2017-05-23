@@ -32,7 +32,7 @@ catch (Exception $e)
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all">
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
 
     <body>
@@ -43,7 +43,7 @@ catch (Exception $e)
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>  
                     </button>
-                    <a class="navbar-brand" href="accueil.php">Acte Media - Suivi de Production</a>
+                    <a href="accueil.php"><img src="assets\ico\logo_horizontal_RVB_md.jpg"></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">

@@ -19,7 +19,7 @@ if($result->num_rows == 0){
 <label style="color: white; margin-bottom: 30px;">Voici les imputations du collaborateur pour le mois choisi :</label><br>
 
 <table class="table table-striped table-bordered">
-  <thead>
+  <thead style="background-color: #ECECEC; color: #232323;">
       <tr>
         <th style="text-align: center;">Code Projet</th>
         <th style="text-align: center;">Jours travaillés (modifiable)</th>
@@ -29,11 +29,10 @@ if($result->num_rows == 0){
 
   <tbody>
     <?php while ($row = $result->fetch_assoc()) { ?>
-      <tr>
+      <tr style="background-color: white;">
           <td><?php echo $row['code_projet']; ?></td>
           <td class="jours" data-id1="<?php echo $row['id']; ?>" contenteditable><?php echo $row['jours']; ?></td>
           <td><button type="button" name="delete_btn" data-id2="<?php echo $row['id']; ?>" class="btn btn-xs btn-danger btn_delete">x</button></td>
-
       </tr>
     <?php }} ?>
   </tbody>

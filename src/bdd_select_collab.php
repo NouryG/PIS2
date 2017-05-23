@@ -14,14 +14,14 @@ catch(Exception $e)
       <div class="table-responsive">
            <table class="table table-bordered">
            <thead>
-             <tr class="bg-primary">
-             <th width="10%">Code</th>
-             <th width="20%">Nom</th>
-             <th width="20%">Prénom</th>
-             <th width="10%">Société</th>
-             <th width="10%">TJ</th>
-             <th width="10%">Actif</th>
-             <th width="10%">Action</th>
+             <tr class="bg-primary" style="background-color: #2F93DB;">
+               <th width="10%">Code</th>
+               <th width="20%">Nom</th>
+               <th width="20%">Prénom</th>
+               <th width="10%">Société</th>
+               <th width="10%">TJ</th>
+               <th width="10%">Actif</th>
+               <th width="10%" style="text-align: center;">Action</th>
              </tr>
            </thead>';
 
@@ -37,7 +37,7 @@ while ($donnees = $reponse->fetch())
                <td class="societe" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["societe"].'</td>
                <td class="tj" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["TJ"].' €</td>
                <td class="actif" data-id2="'.$donnees["id"].'" contenteditable>'.$donnees["actif"].'</td>
-               <td><button type="button" name="delete_btn" data-id3="'.$donnees["code"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
+               <td style="text-align: center;"><button type="button" name="delete_btn" data-id3="'.$donnees["code"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
           </tr>
      ';
 }
@@ -49,7 +49,7 @@ $output .= '
           <td id="societe" contenteditable></td>
           <td id="tj" contenteditable></td>
           <td id="actif" contenteditable></td>
-          <td><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
+          <td style="text-align: center;"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
      </tr>
 ';
  $output .= '</table>

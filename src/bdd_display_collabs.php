@@ -34,7 +34,7 @@ if((!isset($_SESSION['password']) && $_SESSION['password'] != 'actemedia')){
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>  
                     </button>
-                    <a class="navbar-brand" href="accueil.php">Acte Media - Suivi de Production</a>
+                    <a href="accueil.php"><img src="assets\ico\logo_horizontal_RVB_md.jpg"></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -52,14 +52,14 @@ if((!isset($_SESSION['password']) && $_SESSION['password'] != 'actemedia')){
                             <ul class="dropdown-menu">
                                 <li>
                                     <a  id="" class="hidden-xs"  href="monthly_report.php">Rapport Mensuel</a>
-                                    <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
+                                    <a  id="" class="visible-xs" href="monthly_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Mensuel</a>
                                     <a  id="" class="hidden-xs"  href="annual_report.php">Rapport Annuel</a>
                                     <a  id="" class="visible-xs" href="annual_report.php" data-toggle="collapse" data-target=".navbar-collapse">Rapport Annuel</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                </div>
+              </div>
             </div>
         </nav>
 
