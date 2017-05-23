@@ -12,8 +12,7 @@ catch(Exception $e)
 
 $reponse = $bdd->query('SELECT * FROM projet');
 $output = '
-<div class="col-sm-10 col-sm-offset-1"
-    <div class="table-responsive">
+    <div class="table-responsive" style="width: 90%; margin: auto;">
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary" style="background-color: #2F93DB;">
@@ -251,7 +250,7 @@ $output .= '
 
  $output .= '</table>
       </div>
-    </div>';
+ ';
 
  echo $output;
  ?>
