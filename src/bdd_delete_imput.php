@@ -8,6 +8,6 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
- $sql = "DELETE FROM imputation WHERE id = '".$_POST["id"]."'";
+ $sql = "UPDATE imputation SET jours = 0 WHERE id = '".$_POST["id"]."'";
  $bdd->exec($sql);
  ?>

@@ -120,6 +120,7 @@ $("#imput_date").change(function() {
 	return false;
 });
 
+
 $("#code_collab_1").change(function() {
 	var imput_date = $("#imput_date").val();
 	var code_collab = $("#code_collab_1 option:selected").val();
