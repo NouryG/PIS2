@@ -2,14 +2,11 @@
 
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: #888;
-    line-height: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  color: #888;
+  line-height: 30px;
 }
-
-strong { font-weight: 500; }
 
 a, a:hover, a:focus {
   color: #4aaf51;
@@ -20,16 +17,16 @@ a, a:hover, a:focus {
 h1, h2 {
   margin-top: 10px;
   font-size: 38px;
-    font-weight: 100;
-    color: #555;
-    line-height: 50px;
+  font-weight: 100;
+  color: #555;
+  line-height: 50px;
 }
 
 h3 {
   font-size: 22px;
-    font-weight: 300;
-    color: white;
-    line-height: 30px;
+  font-weight: 300;
+  color: white;
+  line-height: 30px;
 }
 
 img { max-width: 100%; }
@@ -54,8 +51,11 @@ body
 
  /* Personalisation du menu */ 
 
+.navbar-custom {
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.3);
+}
 /* Initialisation de la couleur de texte blanche pour tout le menu */
-.navbar-custom .navbar-brand,.navbar-custom .navbar-brand.active,.navbar-custom .navbar-brand:active,.navbar-custom .navbar-brand:focus,.navbar-custom .navbar-brand:hover,.navbar-custom .navbar-nav li a,header{color:#fff}
+.navbar-custom .navbar-brand,.navbar-custom .navbar-brand.active,.navbar-custom .navbar-brand:active,.navbar-custom .navbar-brand:focus,.navbar-custom .navbar-brand:hover,.navbar-custom .navbar-nav li a,header{color:black}
 
 /* Effet de passage de souris et changement de couleur du bouton de petit menu */
 .navbar-custom .navbar-toggle{background-color: transparent; color:white; border-color: white}
@@ -63,25 +63,22 @@ body
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{background-color: transparent;}
 
 .navbar-custom{
-  background:rgb(119, 119, 119);
-  font-weight:600;
+  background: white;
+  font-weight:300;
   border:none;
 }
 
-.navbar-brand{
+.navbar-nav>li>a {
   padding-top: 20px;
 }
-
-/* Couleur du texte lorsqu'on passe la souris */
+/* Couleur du texte au survol */
 .navbar-custom .navbar-nav li a:hover{
-  color:black;
+  color: #2F93DB;
   background:transparent;}
 
 /* GRAND MENU */
 
 @media (min-width:991px){
-
-
 
   .navbar-custom{min-height: 35px;padding:10px 0;-webkit-transition:padding .3s;-moz-transition:padding .3s;transition:padding .3s}
 
@@ -89,7 +86,7 @@ body
   .navbar-custom .navbar-brand{font-size:1.2em;-webkit-transition:all .3s;-moz-transition:all .3s;transition:all .3s}
 
   /* Couleur du menu coulissant */
-  .navbar-custom .dropdown-menu{background-color: rgb(119, 119, 119); box-sizing: border-box;}
+  .navbar-custom .dropdown-menu{box-sizing: border-box;}
 
 }
 

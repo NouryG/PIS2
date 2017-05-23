@@ -19,11 +19,11 @@ if($result->num_rows == 0){
 <label style="color: white; margin-bottom: 30px;">Voici les imputations du collaborateur pour le mois choisi :</label><br>
 
 <table class="table table-striped table-bordered">
-  <thead>
+  <thead style="background-color: #ECECEC; color: #232323;">
       <tr>
-        <th>Code Projet</th>
-        <th>Imputations</th>
-        <th>Supprimer</th>
+        <th style="text-align: center;">Code Projet</th>
+        <th style="text-align: center;">Imputations</th>
+        <th style="text-align: center;">Supprimer</th>
       </tr>
   </thead>
 
