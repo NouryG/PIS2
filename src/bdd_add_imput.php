@@ -37,6 +37,22 @@ if (isset($_POST['date_imput']) && isset($_POST['code_projet']) && isset($_POST[
 		'code_collab' => $_POST['code_collab'],
 		'jours' => $_POST['jours']
 		));
+
+		// On initialise aussi une imputation pour chaque autre projet pour le nouveau mois
+		$projets = $bdd->prepare('SELECT * FROM projet WHERE code <> :code_projet');
+		$projets->execute(array(
+			'code_projet' => $_POST['code_projet']
+		));
+
+		while ($donnees = $projets->fetch()) {
+			$req = $bdd->prepare('INSERT INTO imputation(date_imput, code_projet, code_collab, jours) VALUES(:date_imput, :code_projet, :code_collab, :jours)');
+			$req->execute(array(
+			'date_imput' => $_POST['date_imput'],
+			'code_projet' => $donnees['code'],
+			'code_collab' => $_POST['code_collab'],
+			'jours' => 0
+			));
+		}
     }
 }
 

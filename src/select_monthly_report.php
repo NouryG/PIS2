@@ -30,11 +30,17 @@ else{
 
 <?php
 
-// Sélection des collaborateurs AMA
-$reponse1 = $bdd->query('SELECT *
-                        FROM collaborateurs
-                        WHERE societe="AMA"
+// Sélection des collaborateurs AMA qui ont une imputation sur le mois choisi
+$reponse1 = $bdd->prepare('SELECT DISTINCT code
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND date_imput LIKE :chosen_month
+                        AND societe="AMA"
                         AND actif="1"');
+$reponse1->execute(array(
+'chosen_month' => $chosen_month,
+));
+
 
 $output = '
       <div class="table-responsive">
@@ -55,11 +61,16 @@ while ($donnees = $reponse1->fetch())
 $output .= '
       <th style="background-color: #37ABFF; text-align: center;">AMA</th>';
 
-// Sélection des collaborateurs externes
-$reponse2 = $bdd->query('SELECT *
-                        FROM collaborateurs
-                        WHERE societe<>"AMA"
+// Sélection des collaborateurs externes qui ont une imputation sur le mois choisi
+$reponse2 = $bdd->prepare('SELECT DISTINCT code
+                        FROM collaborateurs as c, imputation as i
+                        WHERE c.code = i.code_collab
+                        AND date_imput LIKE :chosen_month
+                        AND societe<>"AMA"
                         AND actif="1"');
+$reponse2->execute(array(
+'chosen_month' => $chosen_month,
+));
 
 // Affichage des collaborateurs externes
 while ($donnees = $reponse2->fetch())
@@ -111,7 +122,7 @@ while ($donnees = $reponse3->fetch()) {
     }
 
     // Récupération du total AMA
-    $AMA = $bdd->prepare('SELECT SUM(jours)
+    $AMA = $bdd->prepare('SELECT COALESCE(SUM(jours),0)
                         AS total_AMA
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
@@ -150,7 +161,7 @@ while ($donnees = $reponse3->fetch()) {
     }
 
     // Récupération du total AMA
-    $EXT = $bdd->prepare('SELECT SUM(jours)
+    $EXT = $bdd->prepare('SELECT COALESCE(SUM(jours),0)
                         AS total_EXT
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
