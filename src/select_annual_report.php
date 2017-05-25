@@ -12,7 +12,7 @@ catch(Exception $e)
 
 $reponse = $bdd->query('SELECT * FROM projet');
 $output = '
-    <div class="table-responsive" style="width: 90%; margin: auto;">
+    <div class="table-responsive" style="width: 90%; margin: auto; font-size: 15px;">
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary" style="background-color: #2F93DB;">
@@ -44,7 +44,7 @@ while ($donnees = $reponse->fetch())
 {
     $code = $donnees['code'];
     $output .= '
-        <tr style="height: 50px;">
+        <tr style="height: 50px; font-size: 14px;">
             <td>'.$donnees["code"].'</td>
             <td>'.$donnees["nom"].'</td>
             <td>'.$donnees["client"].'</td>
