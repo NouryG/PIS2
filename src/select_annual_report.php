@@ -35,6 +35,7 @@ $output = '
 $total_Produit_AMA = 0; // Pour le total des jours produits AMA
 $total_Produit_STT = 0; // Pour le total des jours produits EXT
 $total_TJM_vendu = 0; // Pour le total TJM vendu
+$total_Jours_Produits = 0; // Pour le total des jours produits
 $total_TJ_projet = 0; // Pour le total TJ projet
 $TJ_projet_count = 0;
 $total_CA_restant = 0; // Pour le total du CA restant
@@ -141,6 +142,9 @@ while ($donnees = $reponse->fetch())
     $produit_STT = $STT->fetch();
 
     $temp_Produits = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
+
+    $total_Jours_Produits += $temp_Produits;
+
     $temp_RAF = $donnees["jours_vendus"] - $temp_Produits;
     $output .= '
                <td>'.$temp_Produits.'</td>
@@ -199,7 +203,7 @@ $output .= '
     <th>'.number_format($total_Produit_AMA, 0, ",", " ").' €</th>
 ';
 
-// Total du produit AMA
+// Total du produit STT
 $output .= '
     <th>'.number_format($total_Produit_STT, 0, ",", " ").' €</th>
 ';
@@ -219,9 +223,8 @@ $output .= '
 ';
 
 // Affichage du total jours produits
-$somme_JP = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
 $output .= '
-    <th>'.$somme_JP.'</th>
+    <th>'.$total_Jours_Produits.'</th>
 ';
 
 $temp = $somme_JV["somme_JV"] - $somme_JP["somme_JP"];
