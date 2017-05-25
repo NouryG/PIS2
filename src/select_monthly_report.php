@@ -31,7 +31,7 @@ else{
 <?php
 
 // Sélection des collaborateurs AMA qui ont une imputation sur le mois choisi
-$reponse1 = $bdd->prepare('SELECT DISTINCT code
+$reponse1 = $bdd->prepare('SELECT DISTINCT nom
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND date_imput LIKE :chosen_month
@@ -54,7 +54,7 @@ $output = '
 while ($donnees = $reponse1->fetch())
 {
      $output .= '
-          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["code"].'</th>
+          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["nom"].'</th>
      ';
 }
 
@@ -62,7 +62,7 @@ $output .= '
       <th style="background-color: #37ABFF; text-align: center;">AMA</th>';
 
 // Sélection des collaborateurs externes qui ont une imputation sur le mois choisi
-$reponse2 = $bdd->prepare('SELECT DISTINCT code
+$reponse2 = $bdd->prepare('SELECT DISTINCT nom
                         FROM collaborateurs as c, imputation as i
                         WHERE c.code = i.code_collab
                         AND date_imput LIKE :chosen_month
@@ -76,7 +76,7 @@ $reponse2->execute(array(
 while ($donnees = $reponse2->fetch())
 {
      $output .= '
-          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["code"].'</th>
+          <th style="background-color: #E7E7E7; text-align: center; color: #2C2C2C; font-weight: normal">'.$donnees["nom"].'</th>
      ';
 }
 
@@ -99,7 +99,7 @@ while ($donnees = $reponse3->fetch()) {
     // Affichage du code projet
     $output .= '
         <tr>
-            <td style="background-color: #E7E7E7; color: #2C2C2C;">'.$code.'</td>
+            <td style="background-color: #E7E7E7; color: #2C2C2C;">'.$donnees['nom'].'</td>
     ';
 
     // Affichage des imputations AMA pour ce projet
