@@ -35,7 +35,7 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["client"].'</td>
                <td>'.$donnees["date_debut"].'</td>
                <td>'.$donnees["jours_vendus"].'</td>
-               <td>'.$donnees["CA_vendu"].' €</td>
+               <td>'.number_format($donnees["CA_vendu"], 0, ",", " ").' €</td>
                <td width="7%"><button type="button" name="delete_btn" data-id3="'.$donnees["code"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
           </tr>
      ';
