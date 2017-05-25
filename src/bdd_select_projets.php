@@ -19,6 +19,8 @@ catch(Exception $e)
                <th width="20%">Nom</th>
                <th width="20%">Client</th>
                <th width="20%">Date de début</th>
+               <th width="20%">Jours Vendus</th>
+               <th width="20%">CA Vendu</th>
              </tr>
            </thead>';
 
@@ -32,6 +34,8 @@ while ($donnees = $reponse->fetch())
                <td>'.$donnees["nom"].'</td>
                <td>'.$donnees["client"].'</td>
                <td>'.$donnees["date_debut"].'</td>
+               <td>'.$donnees["jours_vendus"].'</td>
+               <td>'.$donnees["CA_vendu"].' €</td>
                <td width="7%"><button type="button" name="delete_btn" data-id3="'.$donnees["code"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
           </tr>
      ';
