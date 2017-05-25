@@ -169,7 +169,8 @@ catch (Exception $e)
                                                                   unset($nom);
                                                                   $code = $row['code'];
                                                                   $nom = $row['nom'];
-                                                                  echo '<option value="'.$code.'">'.$nom.'</option>';
+                                                                  $societe = $row['societe'];
+                                                                  echo '<option value="'.$code.'">'.$nom.' - ' .$societe. '</option>';
                                                     }
                                                 ?>
                                             </select>
