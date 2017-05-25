@@ -39,6 +39,8 @@ $total_TJ_projet = 0; // Pour le total TJ projet
 $TJ_projet_count = 0;
 $total_CA_restant = 0; // Pour le total du CA restant
 
+$nbProjets = $reponse->rowCount();
+
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
@@ -213,7 +215,7 @@ $output .= '
 
 // Affichage du total TJM vendu
 $output .= '
-    <th>'.number_format($total_TJM_vendu, 0, ",", " ").' €</th>
+    <th>'.number_format($total_TJM_vendu / $nbProjets, 0, ",", " ").' €</th>
 ';
 
 // Affichage du total jours produits
