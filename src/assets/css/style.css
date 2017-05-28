@@ -58,8 +58,8 @@ body
 .navbar-custom .navbar-brand,.navbar-custom .navbar-brand.active,.navbar-custom .navbar-brand:active,.navbar-custom .navbar-brand:focus,.navbar-custom .navbar-brand:hover,.navbar-custom .navbar-nav li a,header{color:black}
 
 /* Effet de passage de souris et changement de couleur du bouton de petit menu */
-.navbar-custom .navbar-toggle{background-color: transparent; color:white; border-color: white}
-.navbar-custom .navbar-toggle:hover{background-color:black;color:#fff;border-color:black}
+.navbar-custom .navbar-toggle{background-color: transparent; color: black; border-color: black}
+.navbar-custom .navbar-toggle:hover{color:#2F93DB;border-color:#2F93DB}
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{background-color: transparent;}
 
 .navbar-custom{

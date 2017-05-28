@@ -12,7 +12,7 @@ catch(Exception $e)
 
 $reponse = $bdd->query('SELECT * FROM projet');
 $output = '
-    <div class="table-responsive" style="width: 90%; margin: auto;">
+    <div class="table-responsive" style="width: 90%; margin: auto; font-size: 15px;">
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary" style="background-color: #2F93DB;">
@@ -35,16 +35,19 @@ $output = '
 $total_Produit_AMA = 0; // Pour le total des jours produits AMA
 $total_Produit_STT = 0; // Pour le total des jours produits EXT
 $total_TJM_vendu = 0; // Pour le total TJM vendu
+$total_Jours_Produits = 0; // Pour le total des jours produits
+$total_RAF_estime = 0; // Pour le total du RAF estimé
 $total_TJ_projet = 0; // Pour le total TJ projet
-$TJ_projet_count = 0;
 $total_CA_restant = 0; // Pour le total du CA restant
+
+$nbProjets = $reponse->rowCount();
 
 // Affichage des données
 while ($donnees = $reponse->fetch())
 {
     $code = $donnees['code'];
     $output .= '
-        <tr style="height: 50px;">
+        <tr style="height: 50px; font-size: 14px;">
             <td>'.$donnees["code"].'</td>
             <td>'.$donnees["nom"].'</td>
             <td>'.$donnees["client"].'</td>
@@ -139,7 +142,11 @@ while ($donnees = $reponse->fetch())
     $produit_STT = $STT->fetch();
 
     $temp_Produits = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
+    $total_Jours_Produits += $temp_Produits;
+
     $temp_RAF = $donnees["jours_vendus"] - $temp_Produits;
+    $total_RAF_estime += $temp_RAF;
+
     $output .= '
                <td>'.$temp_Produits.'</td>
                <td>'.$temp_RAF.'</td>
@@ -156,7 +163,6 @@ while ($donnees = $reponse->fetch())
         $RAF_final = $donnees["RAF_reel"];
     }
     $total_TJ_projet += $TJ_Projet;
-    $TJ_projet_count += 1;
 
     // Affichage du TJ projet
     $output .= '
@@ -197,7 +203,7 @@ $output .= '
     <th>'.number_format($total_Produit_AMA, 0, ",", " ").' €</th>
 ';
 
-// Total du produit AMA
+// Total du produit STT
 $output .= '
     <th>'.number_format($total_Produit_STT, 0, ",", " ").' €</th>
 ';
@@ -213,18 +219,17 @@ $output .= '
 
 // Affichage du total TJM vendu
 $output .= '
-    <th>'.number_format($total_TJM_vendu, 0, ",", " ").' €</th>
+    <th>'.number_format($total_TJM_vendu / $nbProjets, 0, ",", " ").' €</th>
 ';
 
 // Affichage du total jours produits
-$somme_JP = $produit_AMA["produit_AMA"] + $produit_STT["produit_STT"];
 $output .= '
-    <th>'.$somme_JP.'</th>
+    <th>'.$total_Jours_Produits.'</th>
 ';
 
-$temp = $somme_JV["somme_JV"] - $somme_JP["somme_JP"];
+// Affichage du total RAF estimé
 $output .= '
-    <th>'.$temp.'</th>
+    <th>'.$total_RAF_estime.'</th>
 ';
 
 // Somme des RAF réels
@@ -237,7 +242,7 @@ $output .= '
 ';
 
 // Affichage total TJ projet et CA restant total
-$temp_TJ_projet = round($total_TJ_projet / $TJ_projet_count);
+$temp_TJ_projet = round($total_TJ_projet / $nbProjets);
 $output .= '
     <th>'.number_format($temp_TJ_projet, 0, ",", " ").' €</th>
     <th>'.number_format($total_CA_restant, 0, ",", " ").' €</th>
