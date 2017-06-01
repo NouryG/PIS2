@@ -30,11 +30,11 @@ Sur l'onglet de gauche, cliquez sur "Nouvelle base de données" que vous nommere
 
 Après avoir séléctionné la base créee, importez la base de données. Cette dernière se trouve dans le dossier db des fichiers sources (src/db/actemedia.sql).
 
-Cliquez sur import puis séléctionner le fichier et importez le.
+Cliquez sur import puis séléctionner le fichier, et importez le.
 
 ![import](http://imgur.com/oLpoH2W.jpg)
 
-Voici normalement le résultat que vous devriez avoir.
+Voici normalement le résultat que vous devriez obtenir.
 
 ![resultat](http://imgur.com/6vVpWf1.jpg)
 
