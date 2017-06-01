@@ -13,17 +13,16 @@ title: Guide d'installation de la TEST-APP.
 
 ## Initialisation
 
-Dans ce guide nous allons voir comment installer notre application WEB et l'utiliser.
+Dans ce guide nous allons voir comment installer notre application WEB et ainsi l'utiliser.
 
 
 ### Installation de l'environnement
 
-Il suffira de placer les fichiers sources fournis avec l'application dans votre serveur personnel. Il faut savoir que notre application tourne sous PHP 7.0.15 (au minimum) et MySQL 5.6.35.
-
+Il suffira de placer les fichiers sources fournis avec l'application dans votre serveur personnel. Il faut savoir que notre application tourne sous la version PHP 7.0.15 (au minimum) et la version MySQL 5.6.35.
 
 ### Intégration de la BDD
 
-Après avoir mis en place votre environnement, lancez PHPmyADMIN. Nous allons utiliser ce dernier pour créer notre base de données.
+Après avoir mis en place votre environnement, lancez PHPmyADMIN. Nous allons l'utiliser pour créer notre base de données.
 
 Sur l'onglet de gauche, cliquez sur "Nouvelle base de données" que vous nommerez "ACTEMEDIA".
 
